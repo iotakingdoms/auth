@@ -1,6 +1,10 @@
 import express, { Express } from 'express';
 import { Server } from 'http';
-import { collectDefaultMetrics, Registry } from 'prom-client';
+import {
+  collectDefaultMetrics,
+  Registry,
+  Counter,
+} from 'prom-client';
 import { ILogger } from '../logger/ILogger';
 import { IServer } from './IServer';
 
@@ -20,23 +24,34 @@ export class ExpressServer implements IServer {
 
   private readonly registry: Registry;
 
+  private readonly numOfRequests: Counter<'method'>;
+
   constructor(args: ExpressServerArgs) {
     this.logger = args.logger;
     this.port = args.port;
     this.app = express();
 
     this.registry = new Registry();
+    this.numOfRequests = new Counter({
+      name: 'numOfRequests',
+      help: 'Number of requests made',
+      labelNames: ['method'],
+    });
+
+    this.get = this.get.bind(this);
+    this.getMetrics = this.getMetrics.bind(this);
   }
 
   async get(req: any, res: any) {
+    this.numOfRequests.inc({ method: req.method });
     this.logger.info('GET /');
     res.send('Hello from ExpressServer');
   }
 
   async getMetrics(req: any, res: any) {
     this.logger.info('GET /metrics');
-    const metrics = await this.registry.metrics();
-    res.json(metrics);
+    res.setHeader('Content-Type', this.registry.contentType);
+    res.send(await this.registry.metrics());
   }
 
   async start(): Promise<void> {

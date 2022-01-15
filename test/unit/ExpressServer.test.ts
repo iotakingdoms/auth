@@ -33,6 +33,7 @@ describe('ExpressServer', () => {
     res = {
       send: jest.fn(),
       json: jest.fn(),
+      setHeader: jest.fn(),
     };
 
     server = new ExpressServer({ logger, port: 3000 });
@@ -46,9 +47,10 @@ describe('ExpressServer', () => {
     close.mockImplementationOnce((cb: any) => {
       cb();
     });
+    const req = { method: 'get' };
     await server.start();
-    await server.get(undefined, res);
-    await server.getMetrics(undefined, res);
+    await server.get(req, res);
+    await server.getMetrics(req, res);
     await server.stop();
   });
 
