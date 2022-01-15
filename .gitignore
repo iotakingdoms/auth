@@ -1,0 +1,5 @@
+node_modules
+dist
+components
+componentsjs-error-state.json
+coverage

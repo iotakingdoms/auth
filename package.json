@@ -1,0 +1,50 @@
+{
+  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth",
+  "lsd:components": "dist/components/components.jsonld",
+  "lsd:contexts": {
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld": "dist/components/context.jsonld"
+  },
+  "lsd:importPaths": {
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/": "dist/components/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/config/": "config/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/dist/": "dist/"
+  },
+  "name": "@iotakingdoms/auth",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "components/**/*.jsonld",
+    "config/**/*.json"
+  ],
+  "scripts": {
+    "lint": "eslint",
+    "build": "npm run build:ts && npm run build:components",
+    "build:ts": "tsc",
+    "build:components": "componentsjs-generator -c dist/components --typeScopedContexts",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "jest test/unit",
+    "test:integration": "jest test/integration --collectCoverage=false",
+    "start": "node dist/start.js"
+  },
+  "keywords": [],
+  "author": "Anton Wiklund",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "componentsjs-generator": "^2.6.1",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.3.4",
+    "git-conventional-commits": "^1.1.0",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "componentsjs": "^4.5.0"
+  }
+}

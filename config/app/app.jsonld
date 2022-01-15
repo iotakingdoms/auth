@@ -1,0 +1,13 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld"
+  ],
+  "@graph": [
+    {
+      "@id": "urn:@iotakingdoms/auth:app",
+      "@type": "App",
+      "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
+    }
+  ]
+}
