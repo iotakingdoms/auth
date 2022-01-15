@@ -7,7 +7,8 @@
     {
       "@id": "urn:@iotakingdoms/auth:app",
       "@type": "App",
-      "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
+      "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+      "args_server": { "@id": "urn:@iotakingdoms/auth:server" }
     }
   ]
 }
