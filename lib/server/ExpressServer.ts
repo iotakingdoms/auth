@@ -69,9 +69,10 @@ export class ExpressServer implements IServer {
   }
 
   async invokeMiddlewares(request: Request, response: Response): Promise<void> {
-    for (let i = 0; i < this.middlewares.length; i += 1) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const middleware of this.middlewares) {
       // eslint-disable-next-line no-await-in-loop
-      const output = await this.middlewares[i].handle({ request, response });
+      const output = await middleware.handle({ request, response });
       if (output.swallowed) break;
     }
   }
