@@ -29,7 +29,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - run: npm ci --ignore-scripts
-      - run: npm run build --if-present
       - run: npm run test:unit
   test-integration:
     needs: lint
@@ -45,5 +44,21 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - run: npm ci --ignore-scripts
-      - run: npm run build --if-present
       - run: npm run test:integration
+  build:
+    needs:
+      - 'test-unit'
+      - 'test-integration'
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - '16.x'
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm ci --ignore-scripts
+      - run: npm run build --if-present
