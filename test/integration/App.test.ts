@@ -3,6 +3,7 @@ import { ConsoleLogger } from '../../lib/logger/ConsoleLogger';
 import { ExpressServer } from '../../lib/server/ExpressServer';
 import { ILogger } from '../../lib/logger/ILogger';
 import { IServer } from '../../lib/server/IServer';
+import { NotFoundHandler } from '../../lib/server/middleware/NotFoundHandler';
 
 describe('App', () => {
   let logger: ILogger;
@@ -10,7 +11,11 @@ describe('App', () => {
 
   beforeAll(() => {
     logger = new ConsoleLogger({ level: 'NONE' });
-    server = new ExpressServer({ logger, port: 8080 });
+    server = new ExpressServer({
+      logger,
+      port: 8080,
+      middlewares: [new NotFoundHandler({ logger })],
+    });
   });
 
   it('can start and stop', async () => {

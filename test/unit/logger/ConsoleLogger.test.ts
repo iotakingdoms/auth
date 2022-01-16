@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { ConsoleLogger } from '../../lib/logger/ConsoleLogger';
+import { ConsoleLogger } from '../../../lib/logger/ConsoleLogger';
 
 describe('ConsoleLogger', () => {
   beforeAll(() => {

@@ -1,6 +1,6 @@
-import { App } from '../../lib/app/App';
-import { ILogger } from '../../lib/logger/ILogger';
-import { IServer } from '../../lib/server/IServer';
+import { App } from '../../../lib/app/App';
+import { ILogger } from '../../../lib/logger/ILogger';
+import { IServer } from '../../../lib/server/IServer';
 
 describe('App', () => {
   let logger: ILogger;
