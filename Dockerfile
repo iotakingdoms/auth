@@ -1,5 +1,5 @@
 # Build image
-FROM node:16-alpine AS BUILD_IMAGE
+FROM node:17-alpine AS BUILD_IMAGE
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -14,7 +14,7 @@ RUN npm prune --production
 #RUN find dist -name "*.js.map" -type f -delete
 
 # Build stage
-FROM node:12-alpine
+FROM node:17-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=BUILD_IMAGE /app/package.json ./
