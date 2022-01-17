@@ -5,6 +5,7 @@ export * from './logger/ILogger';
 export * from './logger/ConsoleLogger';
 export * from './handler/IHandler';
 export * from './server/IServer';
+export * from './server/HttpServer';
 export * from './server/ExpressServer';
 export * from './server/HttpHandler';
 export * from './server/middleware/NotFoundHandler';

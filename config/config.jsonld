@@ -5,7 +5,7 @@
   ],
   "import": [
     "logger/console.jsonld",
-    "server/express.jsonld",
+    "server/http.jsonld",
     "server/middleware/not-found.jsonld",
     "server/middleware/prometheus.jsonld",
     "app/app.jsonld"
