@@ -36,18 +36,12 @@ export class PrometheusHandler extends HttpHandler {
     this.logger.info('Terminated MetricsMiddleware');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   canHandle(input: HttpHandlerInput): boolean {
-    if (input.request.method !== 'GET') return false;
-    if (input.request.url !== '/metrics') return false;
     return true;
   }
 
   async handle(input: HttpHandlerInput): Promise<HttpHandlerOutput> {
-    if (!this.canHandle(input)) {
-      this.logger.warn('This middleware received an unsupported handle request!');
-      return { swallowed: false };
-    }
-
     const serverResponse: ServerResponse = input.response;
     serverResponse.setHeader('Content-Type', this.registry.contentType);
     serverResponse.end(await this.registry.metrics());

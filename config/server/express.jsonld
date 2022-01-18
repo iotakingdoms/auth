@@ -10,8 +10,7 @@
       "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
       "args_port": 8080,
       "args_middlewares": [
-        { "@id": "urn:@iotakingdoms/auth:server:middleware:prometheus" },
-        { "@id": "urn:@iotakingdoms/auth:server:middleware:not-found" }
+        { "@id": "urn:@iotakingdoms/auth:server:middleware:router" }
       ]
     }
   ]

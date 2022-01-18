@@ -23,14 +23,4 @@ describe('NotFoundHandler', () => {
     await handler.handle(input);
     await handler.terminate();
   });
-
-  it('can warn about unexpected requests', async () => {
-    const handler = new NotFoundHandler({ logger });
-    await handler.initialize();
-    const input: HttpHandlerInput = { request: createRequest(), response: createResponse() };
-    jest.spyOn(handler, 'canHandle').mockImplementation(() => false);
-    await handler.handle(input);
-    await handler.terminate();
-    expect(logger.warn).toHaveBeenCalledWith('This middleware received an unsupported handle request!');
-  });
 });

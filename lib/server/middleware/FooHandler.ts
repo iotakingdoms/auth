@@ -2,24 +2,24 @@ import { ServerResponse } from 'http';
 import { ILogger } from '../../logger/ILogger';
 import { HttpHandler, HttpHandlerInput, HttpHandlerOutput } from '../HttpHandler';
 
-export interface NotFoundHandlerArgs {
+export interface FooHandlerArgs {
   logger: ILogger;
 }
 
-export class NotFoundHandler extends HttpHandler {
+export class FooHandler extends HttpHandler {
   private readonly logger: ILogger;
 
-  constructor(args: NotFoundHandlerArgs) {
+  constructor(args: FooHandlerArgs) {
     super();
     this.logger = args.logger;
   }
 
   async initialize(): Promise<void> {
-    this.logger.info('Initialized NotFoundHandler');
+    this.logger.info('Initialized FooHandler');
   }
 
   async terminate(): Promise<void> {
-    this.logger.info('Terminated NotFoundHandler');
+    this.logger.info('Terminated FooHandler');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -30,8 +30,8 @@ export class NotFoundHandler extends HttpHandler {
   async handle(input: HttpHandlerInput): Promise<HttpHandlerOutput> {
     const serverResponse: ServerResponse = input.response;
     serverResponse.setHeader('Content-Type', 'text/plain');
-    serverResponse.statusCode = 404;
-    serverResponse.end('Not found');
+    serverResponse.statusCode = 200;
+    serverResponse.end('Foo');
 
     return { swallowed: true };
   }
