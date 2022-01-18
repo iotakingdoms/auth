@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/iotakingdoms/auth/compare/v0.0.5...v0.0.6) (2022-01-18)
+
+
+### Features
+
+* add plain http server implementation ([53ff600](https://github.com/iotakingdoms/auth/commit/53ff6005970cbb670725d15b86a2923afb5a135d))
+
+
+### Bug Fixes
+
+* support nested RouteHandlers ([52bcd3e](https://github.com/iotakingdoms/auth/commit/52bcd3e0220b8c0d1d04485f9ea4a876126d0a7d))
+* upgraded 'componentsjs' to v5 and 'componentsjs-generator' to v3 ([60078c1](https://github.com/iotakingdoms/auth/commit/60078c1c4e235b938969e6b6fa524b5f25c9ef26))
+
 ### [0.0.5](https://github.com/iotakingdoms/auth/compare/v0.0.4...v0.0.5) (2022-01-16)
 
 ### [0.0.4](https://github.com/iotakingdoms/auth/compare/v0.0.3...v0.0.4) (2022-01-16)
