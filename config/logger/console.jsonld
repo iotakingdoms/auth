@@ -7,7 +7,10 @@
     {
       "@id": "urn:@iotakingdoms/auth:logger",
       "@type": "ConsoleLogger",
-      "args_level": "DEBUG"
+      "args_level": {
+        "@id": "urn:@iotakingdoms/auth:variable:logLevel",
+        "@type": "Variable"
+      }
     }
   ]
 }

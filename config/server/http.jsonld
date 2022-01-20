@@ -8,7 +8,10 @@
       "@id": "urn:@iotakingdoms/auth:server",
       "@type": "HttpServer",
       "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
-      "args_port": 8080,
+      "args_port": {
+        "@id": "urn:@iotakingdoms/auth:variable:port",
+        "@type": "Variable"
+      },
       "args_middlewares": [
         { "@id": "urn:@iotakingdoms/auth:server:middleware:router" }
       ]
