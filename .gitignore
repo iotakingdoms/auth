@@ -1,5 +1,6 @@
 .vscode
 coverage
+docs
 dist
 node_modules
 componentsjs-error-state.json
