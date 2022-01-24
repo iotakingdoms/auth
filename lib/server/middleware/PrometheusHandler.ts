@@ -3,7 +3,7 @@ import {
   Registry,
 } from 'prom-client';
 import { ServerResponse } from 'http';
-import { ILogger } from '../../logger/ILogger';
+import { ILogger, LogLevel } from '../../logger/ILogger';
 import { HttpHandler, HttpHandlerInput, HttpHandlerOutput } from '../HttpHandler';
 
 export interface PrometheusHandlerArgs {
@@ -28,12 +28,12 @@ export class PrometheusHandler extends HttpHandler {
 
     collectDefaultMetrics({ register: this.registry });
 
-    this.logger.info('Initialized MetricsMiddleware');
+    this.logger.log(LogLevel.Info, 'Initialized MetricsMiddleware');
   }
 
   async terminate(): Promise<void> {
     this.registry.clear();
-    this.logger.info('Terminated MetricsMiddleware');
+    this.logger.log(LogLevel.Info, 'Terminated MetricsMiddleware');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

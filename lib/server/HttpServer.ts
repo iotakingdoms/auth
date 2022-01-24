@@ -1,6 +1,6 @@
 import { Server, createServer } from 'http';
 import { HttpHandler } from './HttpHandler';
-import { ILogger } from '../logger/ILogger';
+import { ILogger, LogLevel } from '../logger/ILogger';
 import { IServer } from './IServer';
 import { Request } from './Request';
 import { Response } from './Response';
@@ -34,7 +34,7 @@ export class HttpServer implements IServer {
     return new Promise((resolve) => {
       this.server = createServer(this.invokeMiddlewares);
       this.server.listen(this.port, () => {
-        this.logger.info(`Http server started on port: ${this.port}.`);
+        this.logger.log(LogLevel.Info, `Http server started on port: ${this.port}.`);
         resolve();
       });
     });
@@ -45,19 +45,19 @@ export class HttpServer implements IServer {
 
     return new Promise((resolve, reject) => {
       if (!this.server) {
-        this.logger.info('Failed to stop http server, error: No server');
+        this.logger.log(LogLevel.Info, 'Failed to stop http server, error: No server');
         reject(new Error('Failed to stop http server, error: No server'));
         return;
       }
 
       this.server.close((err?: Error) => {
         if (err) {
-          this.logger.info(`Failed to stop http server, error: ${err}`);
+          this.logger.log(LogLevel.Info, `Failed to stop http server, error: ${err}`);
           reject(new Error(`Failed to stop http server, error: ${err}`));
           return;
         }
 
-        this.logger.info('Http server stopped.');
+        this.logger.log(LogLevel.Info, 'Http server stopped.');
         resolve();
       });
     });

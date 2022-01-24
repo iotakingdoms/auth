@@ -1,5 +1,5 @@
 import { ServerResponse } from 'http';
-import { ILogger } from '../../logger/ILogger';
+import { ILogger, LogLevel } from '../../logger/ILogger';
 import { HttpHandler, HttpHandlerInput, HttpHandlerOutput } from '../HttpHandler';
 
 export interface NotFoundHandlerArgs {
@@ -15,11 +15,11 @@ export class NotFoundHandler extends HttpHandler {
   }
 
   async initialize(): Promise<void> {
-    this.logger.info('Initialized NotFoundHandler');
+    this.logger.log(LogLevel.Info, 'Initialized NotFoundHandler');
   }
 
   async terminate(): Promise<void> {
-    this.logger.info('Terminated NotFoundHandler');
+    this.logger.log(LogLevel.Info, 'Terminated NotFoundHandler');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

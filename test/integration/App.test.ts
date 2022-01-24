@@ -10,7 +10,7 @@ describe('App', () => {
   let server: IServer;
 
   beforeAll(() => {
-    logger = new ConsoleLogger({ level: 'NONE' });
+    logger = new ConsoleLogger({ logLevel: 'None' });
     server = new ExpressServer({
       logger,
       port: 8080,

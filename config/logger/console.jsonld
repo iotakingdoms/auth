@@ -7,7 +7,7 @@
     {
       "@id": "urn:@iotakingdoms/auth:logger",
       "@type": "ConsoleLogger",
-      "args_level": {
+      "args_logLevel": {
         "@id": "urn:@iotakingdoms/auth:variable:logLevel",
         "@type": "Variable"
       }

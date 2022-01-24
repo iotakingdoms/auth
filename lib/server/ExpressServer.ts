@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import { Server } from 'http';
 import { HttpHandler } from './HttpHandler';
-import { ILogger } from '../logger/ILogger';
+import { ILogger, LogLevel } from '../logger/ILogger';
 import { IServer } from './IServer';
 import { Request } from './Request';
 import { Response } from './Response';
@@ -39,7 +39,7 @@ export class ExpressServer implements IServer {
 
     return new Promise((resolve) => {
       this.server = this.app.listen(this.port, () => {
-        this.logger.info(`Express server started on port: ${this.port}.`);
+        this.logger.log(LogLevel.Info, `Express server started on port: ${this.port}.`);
         resolve();
       });
     });
@@ -50,19 +50,19 @@ export class ExpressServer implements IServer {
 
     return new Promise((resolve, reject) => {
       if (!this.server) {
-        this.logger.info('Failed to stop express server, error: No server');
+        this.logger.log(LogLevel.Info, 'Failed to stop express server, error: No server');
         reject(new Error('Failed to stop express server, error: No server'));
         return;
       }
 
       this.server.close((err?: Error) => {
         if (err) {
-          this.logger.info(`Failed to stop express server, error: ${err}`);
+          this.logger.log(LogLevel.Info, `Failed to stop express server, error: ${err}`);
           reject(new Error(`Failed to stop express server, error: ${err}`));
           return;
         }
 
-        this.logger.info('Express stopped.');
+        this.logger.log(LogLevel.Info, 'Express stopped.');
         resolve();
       });
     });

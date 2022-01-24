@@ -12,6 +12,7 @@ describe('App', () => {
       info: jest.fn(),
       warn: jest.fn(),
       error: jest.fn(),
+      log: jest.fn(),
     };
     server = {
       start: jest.fn(),

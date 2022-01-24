@@ -1,4 +1,4 @@
-import { ILogger } from '../../logger/ILogger';
+import { ILogger, LogLevel } from '../../logger/ILogger';
 import { HttpHandler, HttpHandlerInput, HttpHandlerOutput } from '../HttpHandler';
 import { Request } from '../Request';
 // import { Response } from '../Response';
@@ -25,12 +25,12 @@ export class RouteHandler extends HttpHandler {
 
   async initialize(): Promise<void> {
     this.middlewares.forEach((middleware) => middleware.initialize());
-    this.logger.info('Initialized RouteHandler');
+    this.logger.log(LogLevel.Info, 'Initialized RouteHandler');
   }
 
   async terminate(): Promise<void> {
     this.middlewares.forEach((middleware) => middleware.terminate());
-    this.logger.info('Terminated RouteHandler');
+    this.logger.log(LogLevel.Info, 'Terminated RouteHandler');
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,5 +1,5 @@
 import { IApp } from './IApp';
-import { ILogger } from '../logger/ILogger';
+import { ILogger, LogLevel } from '../logger/ILogger';
 import { IServer } from '../server/IServer';
 
 export interface AppArgs {
@@ -19,11 +19,11 @@ export class App implements IApp {
 
   async start(): Promise<void> {
     await this.server.start();
-    this.logger.info('App started!');
+    this.logger.log(LogLevel.Info, 'App started!');
   }
 
   async stop(): Promise<void> {
     await this.server.stop();
-    this.logger.info('App stopped!');
+    this.logger.log(LogLevel.Info, 'App stopped!');
   }
 }
