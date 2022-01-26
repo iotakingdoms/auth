@@ -69,7 +69,7 @@ jobs:
           npm run test:e2e
         env:
           CI: true
-  build:
+  build-docker:
     needs:
       - "test-unit"
       - "test-integration"
@@ -84,6 +84,5 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - run: npm ci --ignore-scripts
-      - run: npm run build --if-present
+      - name: Build Docker image
+        run: docker build .
