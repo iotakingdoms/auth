@@ -67,13 +67,8 @@ jobs:
           npm install
           npm run build
           npm run test:e2e
-        env:
-          CI: true
-  build:
-    needs:
-      - "test-unit"
-      - "test-integration"
-      - "test-e2e"
+  test-release:
+    needs: lint
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -85,5 +80,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: npm ci --ignore-scripts
-      - run: npm run build --if-present
+      - run: |
+          npm ci --ignore-scripts
+          npm run release -- --dry-run
+  build-docker:
+    needs:
+      - "test-unit"
+      - "test-integration"
+      - "test-e2e"
+      - "test-release"
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "16.x"
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker image
+        run: docker build .
