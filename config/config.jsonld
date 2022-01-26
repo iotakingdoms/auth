@@ -9,6 +9,7 @@
     "server/middleware/router.jsonld",
     "server/middleware/not-found.jsonld",
     "server/middleware/prometheus.jsonld",
+    "server/middleware/version.jsonld",
     "app/app.jsonld"
   ],
   "@graph": []

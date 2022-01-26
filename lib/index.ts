@@ -9,6 +9,6 @@ export * from './server/HttpServer';
 export * from './server/ExpressServer';
 export * from './server/HttpHandler';
 export * from './server/middleware/RouteHandler';
-export * from './server/middleware/FooHandler';
+export * from './server/middleware/VersionHandler';
 export * from './server/middleware/NotFoundHandler';
 export * from './server/middleware/PrometheusHandler';

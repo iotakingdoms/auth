@@ -22,6 +22,12 @@
           "args_path": "/metrics",
           "args_middlewares": [{ "@id": "urn:@iotakingdoms/auth:server:middleware:prometheus" }]
         },
+        {
+          "@type": "RouteHandler",
+          "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+          "args_path": "/version",
+          "args_middlewares": [{ "@id": "urn:@iotakingdoms/auth:server:middleware:version" }]
+        },
         { "@id": "urn:@iotakingdoms/auth:server:middleware:not-found" }
       ]
     }
