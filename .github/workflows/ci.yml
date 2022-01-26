@@ -2,10 +2,10 @@ name: CI
 on:
   push:
     branches:
-      - 'main'
+      - "main"
   pull_request:
     branches:
-      - '**'
+      - "**"
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
         operating-system:
           - ubuntu-latest
         node-version:
-          - '16.x'
+          - "16.x"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -28,7 +28,7 @@ jobs:
         operating-system:
           - ubuntu-latest
         node-version:
-          - '16.x'
+          - "16.x"
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
@@ -43,24 +43,40 @@ jobs:
         operating-system:
           - ubuntu-latest
         node-version:
-          - '16.x'
+          - "16.x"
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
       - run: npm ci --ignore-scripts
       - run: npm run test:integration
-  build:
-    needs:
-      - 'test-unit'
-      - 'test-integration'
+  test-e2e:
+    needs: lint
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
         operating-system:
           - ubuntu-latest
         node-version:
-          - '16.x'
+          - "16.x"
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm ci --ignore-scripts
+      - run: npm run test:e2e
+  build:
+    needs:
+      - "test-unit"
+      - "test-integration"
+      - "test-e2e"
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "16.x"
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
