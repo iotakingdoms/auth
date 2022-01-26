@@ -63,8 +63,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: npm ci --ignore-scripts
-      - run: npm run test:e2e
+      - run: |
+          npm ci --ignore-scripts
+          npm run test:e2e
+        env:
+          CI: true
   build:
     needs:
       - "test-unit"
