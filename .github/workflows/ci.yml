@@ -67,8 +67,22 @@ jobs:
           npm install
           npm run build
           npm run test:e2e
-        env:
-          CI: true
+  test-release:
+    needs: lint
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "16.x"
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: |
+          npm ci --ignore-scripts
+          npm run release -- --dry-run
   build-docker:
     needs:
       - "test-unit"
