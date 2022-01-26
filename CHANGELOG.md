@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/iotakingdoms/auth/compare/v0.0.6...v0.0.7) (2022-01-26)
+
+
+### Features
+
+* add a '/version' endpoint to get npm package version ([ee5f75e](https://github.com/iotakingdoms/auth/commit/ee5f75ed8a809dc61534048ecbbe54f11b36d4d7))
+* add automatic commit hooks to check git message linting and run tests ([8b28748](https://github.com/iotakingdoms/auth/commit/8b28748e7ee75659e78fb7827b1b7e50183244c5))
+* add cli parser to support overriding default variables ([3e22657](https://github.com/iotakingdoms/auth/commit/3e2265713c8ac106420e061a91bb582a1b761d04))
+* npm script for documentation generation ([540ea6a](https://github.com/iotakingdoms/auth/commit/540ea6a8f6983c7467cbffc06f7dcd2e683c75ab))
+
+
+### Bug Fixes
+
+* **dockerfile:** run application with 'npm start' instead of 'node dist/start.js' ([92afa6f](https://github.com/iotakingdoms/auth/commit/92afa6f64103c346d173ee670972dd056d57e229))
+* simplify log level implementation and usage ([a6f1a38](https://github.com/iotakingdoms/auth/commit/a6f1a3879ba9a4b16895a32c99f99f8fa0ee872d))
+
 ### [0.0.6](https://github.com/iotakingdoms/auth/compare/v0.0.5...v0.0.6) (2022-01-18)
 
 
