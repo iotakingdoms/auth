@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/iotakingdoms/auth/compare/v0.0.7...v0.0.8) (2022-01-26)
+
+
+### Features
+
+* e2e tests with puppeteer ([30f4af1](https://github.com/iotakingdoms/auth/commit/30f4af171f198a3388d47a0dfa7a1587e033800c))
+
 ### [0.0.7](https://github.com/iotakingdoms/auth/compare/v0.0.6...v0.0.7) (2022-01-26)
 
 
