@@ -116,7 +116,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test-unit:
-    needs: lint
+    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -139,7 +139,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run test:unit
   test-integration:
-    needs: lint
+    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -162,7 +162,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run test:integration
   test-e2e:
-    needs: lint
+    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
