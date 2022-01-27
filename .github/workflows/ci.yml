@@ -8,10 +8,12 @@ on:
       - "**"
 jobs:
   run-cache:
-    - uses: iotakingdoms/actions/packages/cached-npm-ci@main
-    - uses: iotakingdoms/actions/packages/cached-npm-ci@main
-      with:
-        args: "--ignore-scripts"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+        with:
+          args: "--ignore-scripts"
   lint:
     needs: run-cache
     runs-on: ubuntu-latest
