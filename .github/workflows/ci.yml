@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Cache node modules
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
@@ -65,7 +64,6 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run docs
   dry-release:
-    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -75,19 +73,10 @@ jobs:
           - "17.x"
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Restore node modules cache
-        id: cache-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - run: |
-          npm ci --ignore-scripts
-          npm run release -- --dry-run
+          args: "--ignore-scripts"
+      - run: npm run release -- --dry-run
   dry-npm-publish:
     needs: cache-node-modules
     runs-on: ubuntu-latest
