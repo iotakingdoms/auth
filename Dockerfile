@@ -2,12 +2,13 @@
 FROM node:17-alpine AS BUILD_IMAGE
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --ignore-scripts
 COPY . .
-RUN npm ci
 RUN npm run lint
 RUN npm run build
-RUN npm run test
+RUN npm run test:unit
+RUN npm run test:integration
+# RUN npm run test:e2e
 RUN npm prune --production
 
 # Application image
