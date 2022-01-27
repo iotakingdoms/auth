@@ -7,7 +7,21 @@ on:
     branches:
       - "**"
 jobs:
+  cache-node-modules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install node modules
+        run: npm install
   lint:
+    needs: cache-node-modules
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,9 +32,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Restore node modules cache
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci --ignore-scripts
       - run: npm run lint
   gen-docs:
+    needs: cache-node-modules
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -31,9 +54,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Restore node modules cache
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci --ignore-scripts
       - run: npm run docs
   dry-release:
+    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -45,11 +77,47 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Restore node modules cache
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - run: |
           npm ci --ignore-scripts
           npm run release -- --dry-run
+  dry-npm-publish:
+    needs: cache-node-modules
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "17.x"
+          registry-url: "https://npm.pkg.github.com"
+      - name: Restore node modules cache
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish --access public --dry
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test-unit:
-    needs: lint
+    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -61,10 +129,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Restore node modules cache
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci --ignore-scripts
       - run: npm run test:unit
   test-integration:
-    needs: lint
+    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -76,10 +152,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Restore node modules cache
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci --ignore-scripts
       - run: npm run test:integration
   test-e2e:
-    needs: lint
+    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -91,15 +175,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Restore node modules cache
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - run: |
           npm install
           npm run build
           npm run test:e2e
   build-docker:
-    needs:
-      - "test-unit"
-      - "test-integration"
-      - "test-e2e"
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:

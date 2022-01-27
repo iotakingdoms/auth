@@ -14,10 +14,6 @@
   "description": "",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "components/**/*.jsonld",
-    "config/**/*.json"
-  ],
   "scripts": {
     "docs": "typedoc lib/index.ts",
     "lint": "eslint",
