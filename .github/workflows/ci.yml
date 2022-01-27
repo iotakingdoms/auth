@@ -7,7 +7,13 @@ on:
     branches:
       - "**"
 jobs:
+  run-cache:
+    - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+    - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+      with:
+        args: "--ignore-scripts"
   lint:
+    needs: run-cache
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,6 +27,7 @@ jobs:
           args: "--ignore-scripts"
       - run: npm run lint
   gen-docs:
+    needs: run-cache
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,6 +41,7 @@ jobs:
           args: "--ignore-scripts"
       - run: npm run docs
   dry-release:
+    needs: run-cache
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -47,6 +55,7 @@ jobs:
           args: "--ignore-scripts"
       - run: npm run release -- --dry-run
   dry-npm-publish:
+    needs: run-cache
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -61,6 +70,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test-unit:
+    needs: run-cache
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -74,6 +84,7 @@ jobs:
           args: "--ignore-scripts"
       - run: npm run test:unit
   test-integration:
+    needs: run-cache
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -87,6 +98,7 @@ jobs:
           args: "--ignore-scripts"
       - run: npm run test:integration
   test-e2e:
+    needs: run-cache
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
