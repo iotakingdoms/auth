@@ -7,20 +7,7 @@ on:
     branches:
       - "**"
 jobs:
-  cache-node-modules:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - name: Install node modules
-        run: npm install
   lint:
-    needs: cache-node-modules
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -29,20 +16,11 @@ jobs:
         node-version:
           - "17.x"
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Restore node modules cache
-        id: cache-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci --ignore-scripts
+          args: "--ignore-scripts"
       - run: npm run lint
   gen-docs:
-    needs: cache-node-modules
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -51,17 +29,9 @@ jobs:
         node-version:
           - "17.x"
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Restore node modules cache
-        id: cache-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci --ignore-scripts
+          args: "--ignore-scripts"
       - run: npm run docs
   dry-release:
     runs-on: ${{ matrix.operating-system }}
@@ -78,7 +48,6 @@ jobs:
           args: "--ignore-scripts"
       - run: npm run release -- --dry-run
   dry-npm-publish:
-    needs: cache-node-modules
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -87,26 +56,12 @@ jobs:
         node-version:
           - "17.x"
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "17.x"
-          registry-url: "https://npm.pkg.github.com"
-      - name: Restore node modules cache
-        id: cache-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
       - run: npm run build
       - run: npm publish --access public --dry
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test-unit:
-    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -116,20 +71,11 @@ jobs:
           - "17.x"
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Restore node modules cache
-        id: cache-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci --ignore-scripts
+          args: "--ignore-scripts"
       - run: npm run test:unit
   test-integration:
-    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -139,20 +85,11 @@ jobs:
           - "17.x"
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Restore node modules cache
-        id: cache-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-      - run: npm ci --ignore-scripts
+          args: "--ignore-scripts"
       - run: npm run test:integration
   test-e2e:
-    needs: cache-node-modules
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
@@ -162,18 +99,8 @@ jobs:
           - "17.x"
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-      - name: Restore node modules cache
-        id: cache-node-modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
       - run: |
-          npm install
           npm run build
           npm run test:e2e
   build-docker:
