@@ -41,7 +41,6 @@ jobs:
           - ubuntu-latest
         node-version:
           - "17.x"
-    timeout-minutes: 10
     steps:
       - uses: iotakingdoms/actions/packages/cached-npm-ci@main
         with:
