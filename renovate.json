@@ -3,6 +3,6 @@
     "config:base"
   ],
   "automerge": true,
-  "automergeType": "p",
+  "automergeType": "pr",
   "automergeComment": "ci: auto merge"
 }
