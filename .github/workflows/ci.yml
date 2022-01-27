@@ -50,6 +50,12 @@ jobs:
           npm run release -- --dry-run
   dry-npm-publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
