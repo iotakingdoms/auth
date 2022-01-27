@@ -48,6 +48,19 @@ jobs:
       - run: |
           npm ci --ignore-scripts
           npm run release -- --dry-run
+  dry-npm-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "17.x"
+          registry-url: "https://npm.pkg.github.com"
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish --access public --dry
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test-unit:
     needs: lint
     runs-on: ${{ matrix.operating-system }}

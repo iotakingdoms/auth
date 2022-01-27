@@ -1,0 +1,14 @@
+.github/
+.husky/
+coverage/
+docs/
+test/
+.commitlintrc.json
+.dockerignore
+.eslintrc.json
+.gitignore
+.npmignore
+Dockerfile
+renovate.json
+jest-puppeteer.config.js
+jest.config.js
