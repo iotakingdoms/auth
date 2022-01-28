@@ -1,4 +1,4 @@
-import { IHandler } from '../handler/IHandler';
+import { IHandler } from '../common/handler/IHandler';
 import { Request } from './Request';
 import { Response } from './Response';
 
