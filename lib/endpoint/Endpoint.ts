@@ -1,6 +1,5 @@
-import { ServerResponse } from 'http';
 import { Handler } from '../common/handler/Handler';
-import { Logger, LogLevel } from '../logger/Logger';
+import { Logger } from '../logger/Logger';
 import { HttpHandlerInput } from '../http/HttpHandler';
 import { Initializer } from '../common/Initializer';
 
