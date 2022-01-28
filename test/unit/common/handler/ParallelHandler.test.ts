@@ -1,13 +1,23 @@
+import { Logger } from '../../../../lib/logger/Logger';
 import { Handler } from '../../../../lib/common/handler/Handler';
 import { ParallelHandler } from '../../../../lib/common/handler/ParallelHandler';
 
 describe('ParallelHandler', () => {
+  let logger: Logger;
   let nestedHandler1: jest.Mocked<Handler<string, void>>;
   let nestedHandler2: jest.Mocked<Handler<string, void>>;
   let nestedHandler3: jest.Mocked<Handler<string, void>>;
   let parallelHandler: ParallelHandler<string>;
 
   beforeAll(() => {
+    logger = {
+      debug: jest.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
+      log: jest.fn(),
+    };
+
     nestedHandler1 = {
       initialize: jest.fn(),
       terminate: jest.fn(),
@@ -30,6 +40,7 @@ describe('ParallelHandler', () => {
     };
 
     parallelHandler = new ParallelHandler<string>({
+      logger,
       handlers: [
         nestedHandler1,
         nestedHandler2,

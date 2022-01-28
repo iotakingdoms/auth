@@ -15,13 +15,10 @@ export interface HttpHandlerArgs {
 }
 
 export class HttpHandler extends WaterfallHandler<HttpHandlerInput> {
-  private readonly logger: Logger;
-
   private readonly path: string;
 
   constructor(args: HttpHandlerArgs) {
-    super({ handlers: args.handlers });
-    this.logger = args.logger;
+    super({ logger: args.logger, handlers: args.handlers });
     this.path = args.path;
   }
 

@@ -1,13 +1,23 @@
+import { Logger } from '../../../../lib/logger/Logger';
 import { Handler } from '../../../../lib/common/handler/Handler';
 import { WaterfallHandler } from '../../../../lib/common/handler/WaterfallHandler';
 
 describe('WaterfallHandler', () => {
+  let logger: Logger;
   let nestedHandler1: jest.Mocked<Handler<string, void>>;
   let nestedHandler2: jest.Mocked<Handler<string, void>>;
   let nestedHandler3: jest.Mocked<Handler<string, void>>;
   let waterfallHandler: WaterfallHandler<string>;
 
   beforeAll(() => {
+    logger = {
+      debug: jest.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
+      log: jest.fn(),
+    };
+
     nestedHandler1 = {
       initialize: jest.fn(),
       terminate: jest.fn(),
@@ -30,6 +40,7 @@ describe('WaterfallHandler', () => {
     };
 
     waterfallHandler = new WaterfallHandler<string>({
+      logger,
       handlers: [
         nestedHandler1,
         nestedHandler2,

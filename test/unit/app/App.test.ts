@@ -14,6 +14,7 @@ describe('App', () => {
       error: jest.fn(),
       log: jest.fn(),
     };
+
     httpServer = {
       initialize: jest.fn(),
       terminate: jest.fn(),
