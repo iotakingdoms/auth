@@ -1,7 +1,7 @@
 describe('Metrics', () => {
   it('serves a metrics with ', async () => {
-    await page.goto('http://localhost:8080/metrics', {waitUntil: 'domcontentloaded'});
-    const text = await page.$eval('body pre', el => el.innerHTML);
+    await page.goto('http://localhost:8080/metrics', { waitUntil: 'domcontentloaded' });
+    const text = await page.$eval('body pre', (el) => el.innerHTML);
     expect(text.includes('process_cpu_user_seconds_total')).toBeTruthy();
     expect(text.includes('process_cpu_system_seconds_total')).toBeTruthy();
     expect(text.includes('process_cpu_seconds_total')).toBeTruthy();

@@ -17,6 +17,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "no-shadow": "off",
         "class-methods-use-this": "off",
         "import/extensions": [
             "error",
@@ -28,7 +29,11 @@
                 "tsx": "never"
             }
         ],
-        "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error"
+    },
+    // Puppeteer globals
+    "globals": {
+        "page": true,
+        "browser": true
     }
 }

@@ -8,10 +8,30 @@ export default class AppRunner {
     const argv = await yargs(process.argv.slice(2))
       .usage('node ./dist/start.js [args]')
       .options({
-        config: { type: 'string', alias: 'c', default: 'config/config.jsonld', requiresArg: true },
-        entrypoint: { type: 'string', alias: 'e', default: 'urn:@iotakingdoms/auth:app', requiresArg: true },
-        logLevel: { type: 'string', alias: 'l', default: 'Info', requiresArg: true },
-        port: { type: 'number', alias: 'p', default: 8080, requiresArg: true },
+        config: {
+          type: 'string',
+          alias: 'c',
+          default: 'config/config.jsonld',
+          requiresArg: true,
+        },
+        entrypoint: {
+          type: 'string',
+          alias: 'e',
+          default: 'urn:@iotakingdoms/auth:app',
+          requiresArg: true,
+        },
+        logLevel: {
+          type: 'string',
+          alias: 'l',
+          default: 'Info',
+          requiresArg: true,
+        },
+        port: {
+          type: 'number',
+          alias: 'p',
+          default: 8080,
+          requiresArg: true,
+        },
       })
       .parse();
 
@@ -19,7 +39,7 @@ export default class AppRunner {
       'urn:@iotakingdoms/auth:variable:port': argv.port,
       'urn:@iotakingdoms/auth:variable:logLevel': argv.logLevel,
     };
-    
+
     const manager = await ComponentsManager.build({
       mainModulePath: Path.join(__dirname, '/../..'),
     });

@@ -16,7 +16,9 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "docs": "typedoc lib/index.ts",
-    "lint": "eslint",
+    "lint": "npm run lint:lib && npm run lint:test",
+    "lint:lib": "eslint ./lib/**/*.ts",
+    "lint:test": "eslint ./test/**/*.ts",
     "build": "npm run build:ts && npm run build:components",
     "build:ts": "tsc",
     "build:components": "componentsjs-generator -c dist/components",
