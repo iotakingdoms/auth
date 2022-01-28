@@ -1,20 +1,19 @@
 import { Handler } from './Handler';
 import { NestedHandler } from './NestedHandler';
 
-export interface SequenceHandlerArgs<TIn, TOut> {
+export interface WaterfallHandlerArgs<TIn, TOut> {
   handlers: Handler<TIn, TOut>[];
 }
 
-export class SequenceHandler<TIn> extends NestedHandler<TIn, void> {
-  constructor(args: SequenceHandlerArgs<TIn, void>) {
+export class WaterfallHandler<TIn> extends NestedHandler<TIn, void> {
+  constructor(args: WaterfallHandlerArgs<TIn, void>) {
     super({ handlers: args.handlers });
   }
 
   async handle(input: TIn): Promise<void> {
     const handlers = this.handlers.filter((handler) => handler.canHandle(input));
-    for (const handler of handlers) {
-      // eslint-disable-next-line no-await-in-loop
-      await handler.handle(input);
+    if (handlers[0]) {
+      await handlers[0].handle(input);
     }
   }
 }

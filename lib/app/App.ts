@@ -1,29 +1,28 @@
-import { IApp } from './IApp';
-import { ILogger, LogLevel } from '../logger/ILogger';
-import { IServer } from '../server/IServer';
+import { Logger, LogLevel } from '../logger/Logger';
+import { Initializable } from '../common/Initializable';
 
 export interface AppArgs {
-  logger: ILogger;
-  server: IServer;
+  logger: Logger;
+  httpServer: Initializable;
 }
 
-export class App implements IApp {
-  private readonly logger: ILogger;
+export class App implements Initializable {
+  private readonly logger: Logger;
 
-  private readonly server: IServer;
+  private readonly httpServer: Initializable;
 
   constructor(args: AppArgs) {
     this.logger = args.logger;
-    this.server = args.server;
+    this.httpServer = args.httpServer;
   }
 
-  async start(): Promise<void> {
-    await this.server.start();
+  async initialize(): Promise<void> {
+    await this.httpServer.initialize();
     this.logger.log(LogLevel.Info, 'App started!');
   }
 
-  async stop(): Promise<void> {
-    await this.server.stop();
+  async terminate(): Promise<void> {
+    await this.httpServer.terminate();
     this.logger.log(LogLevel.Info, 'App stopped!');
   }
 }

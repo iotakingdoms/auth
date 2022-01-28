@@ -1,10 +1,12 @@
 import { ComponentsManager } from 'componentsjs';
 import * as Path from 'path';
 import yargs from 'yargs';
-import { IApp } from './IApp';
+import { Initializable } from '../common/Initializable';
 
-export default class AppRunner {
-  async start() {
+export default class AppRunner implements Initializable {
+  private readonly app: Initializable | undefined;
+
+  async initialize() {
     const argv = await yargs(process.argv.slice(2))
       .usage('node ./dist/start.js [args]')
       .options({
@@ -44,7 +46,13 @@ export default class AppRunner {
       mainModulePath: Path.join(__dirname, '/../..'),
     });
     await manager.configRegistry.register(argv.config);
-    const app = await manager.instantiate(argv.entrypoint, { variables }) as IApp;
-    await app.start();
+    const app = await manager.instantiate(argv.entrypoint, { variables }) as Initializable;
+    await app.initialize();
+  }
+
+  async terminate(): Promise<void> {
+    if (this.app) {
+      await this.app.terminate();
+    }
   }
 }

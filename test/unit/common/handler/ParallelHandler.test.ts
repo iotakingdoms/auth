@@ -1,11 +1,11 @@
 import { Handler } from '../../../../lib/common/handler/Handler';
-import { SequenceHandler } from '../../../../lib/common/handler/SequenceHandler';
+import { ParallelHandler } from '../../../../lib/common/handler/ParallelHandler';
 
-describe('SequenceHandler', () => {
+describe('ParallelHandler', () => {
   let nestedHandler1: jest.Mocked<Handler<string, void>>;
   let nestedHandler2: jest.Mocked<Handler<string, void>>;
   let nestedHandler3: jest.Mocked<Handler<string, void>>;
-  let sequenceHandler: SequenceHandler<string>;
+  let parallelHandler: ParallelHandler<string>;
 
   beforeAll(() => {
     nestedHandler1 = {
@@ -29,7 +29,7 @@ describe('SequenceHandler', () => {
       handle: jest.fn(async (input: string): Promise<void> => {}),
     };
 
-    sequenceHandler = new SequenceHandler<string>({
+    parallelHandler = new ParallelHandler<string>({
       handlers: [
         nestedHandler1,
         nestedHandler2,
@@ -42,7 +42,7 @@ describe('SequenceHandler', () => {
     expect(nestedHandler1.initialize).not.toHaveBeenCalled();
     expect(nestedHandler2.initialize).not.toHaveBeenCalled();
     expect(nestedHandler3.initialize).not.toHaveBeenCalled();
-    await sequenceHandler.initialize();
+    await parallelHandler.initialize();
     expect(nestedHandler1.initialize).toHaveBeenCalled();
     expect(nestedHandler2.initialize).toHaveBeenCalled();
     expect(nestedHandler3.initialize).toHaveBeenCalled();
@@ -52,7 +52,7 @@ describe('SequenceHandler', () => {
     expect(nestedHandler1.terminate).not.toHaveBeenCalled();
     expect(nestedHandler2.terminate).not.toHaveBeenCalled();
     expect(nestedHandler3.terminate).not.toHaveBeenCalled();
-    await sequenceHandler.terminate();
+    await parallelHandler.terminate();
     expect(nestedHandler1.terminate).toHaveBeenCalled();
     expect(nestedHandler2.terminate).toHaveBeenCalled();
     expect(nestedHandler3.terminate).toHaveBeenCalled();
@@ -67,36 +67,38 @@ describe('SequenceHandler', () => {
       expect(nestedHandler1.canHandle).not.toHaveBeenCalled();
       expect(nestedHandler2.canHandle).not.toHaveBeenCalled();
       expect(nestedHandler3.canHandle).not.toHaveBeenCalled();
-      sequenceHandler.canHandle('something');
+      parallelHandler.canHandle('something');
       expect(nestedHandler1.canHandle).toHaveBeenCalled();
       expect(nestedHandler2.canHandle).toHaveBeenCalled();
       expect(nestedHandler3.canHandle).toHaveBeenCalled();
     });
 
-    it('executes nested handlers in sequential order', async () => {
+    it('executes nested handlers in parallel', async () => {
+      const returnOrder: string[] = [];
       nestedHandler1.handle.mockImplementationOnce(async (): Promise<void> => {
-        expect(nestedHandler1.handle).toHaveBeenCalled();
-        expect(nestedHandler2.handle).not.toHaveBeenCalled();
-        expect(nestedHandler3.handle).not.toHaveBeenCalled();
+        await new Promise((resolve) => { setTimeout(resolve, 30); });
+        returnOrder.push('handled1');
       });
 
       nestedHandler2.handle.mockImplementationOnce(async (): Promise<void> => {
-        expect(nestedHandler1.handle).toHaveBeenCalled();
-        expect(nestedHandler2.handle).toHaveBeenCalled();
-        expect(nestedHandler3.handle).not.toHaveBeenCalled();
+        await new Promise((resolve) => { setTimeout(resolve, 10); });
+        returnOrder.push('handled2');
       });
 
       nestedHandler3.handle.mockImplementationOnce(async (): Promise<void> => {
-        expect(nestedHandler1.handle).toHaveBeenCalled();
-        expect(nestedHandler2.handle).toHaveBeenCalled();
-        expect(nestedHandler3.handle).toHaveBeenCalled();
+        await new Promise((resolve) => { setTimeout(resolve, 20); });
+        returnOrder.push('handled3');
       });
 
       expect(nestedHandler1.handle).not.toHaveBeenCalled();
       expect(nestedHandler2.handle).not.toHaveBeenCalled();
       expect(nestedHandler3.handle).not.toHaveBeenCalled();
 
-      await sequenceHandler.handle('something');
+      await parallelHandler.handle('something');
+
+      expect(returnOrder[0]).toBe('handled2');
+      expect(returnOrder[1]).toBe('handled3');
+      expect(returnOrder[2]).toBe('handled1');
 
       expect(nestedHandler1.handle).toHaveBeenCalledWith('something');
       expect(nestedHandler2.handle).toHaveBeenCalledWith('something');
@@ -109,7 +111,7 @@ describe('SequenceHandler', () => {
       expect(nestedHandler2.handle).not.toHaveBeenCalled();
       expect(nestedHandler3.handle).not.toHaveBeenCalled();
 
-      await sequenceHandler.handle('something');
+      await parallelHandler.handle('something');
 
       expect(nestedHandler1.handle).toHaveBeenCalledWith('something');
       expect(nestedHandler2.handle).not.toHaveBeenCalled();

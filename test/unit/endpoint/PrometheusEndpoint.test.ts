@@ -1,10 +1,10 @@
 import { createRequest, createResponse } from 'node-mocks-http';
-import { ILogger } from '../../../../lib/logger/ILogger';
-import { HttpHandlerInput } from '../../../../lib/server/HttpHandler';
-import { PrometheusHandler } from '../../../../lib/server/middleware/PrometheusHandler';
+import { Logger } from '../../../lib/logger/Logger';
+import { PrometheusEndpoint } from '../../../lib/endpoint/PrometheusEndpoint';
+import { HttpHandlerInput } from '../../../lib/http/HttpHandler';
 
-describe('PrometheusHandler', () => {
-  let logger: ILogger;
+describe('PrometheusEndpoint', () => {
+  let logger: Logger;
 
   beforeAll(() => {
     logger = {
@@ -17,7 +17,7 @@ describe('PrometheusHandler', () => {
   });
 
   it('can handle requests', async () => {
-    const handler = new PrometheusHandler({ logger });
+    const handler = new PrometheusEndpoint({ logger });
     await handler.initialize();
     const input: HttpHandlerInput = { request: createRequest(), response: createResponse() };
     expect(handler.canHandle(input)).toBeTruthy();

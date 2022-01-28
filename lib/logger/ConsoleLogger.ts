@@ -1,10 +1,10 @@
-import { ILogger, LogLevel } from './ILogger';
+import { Logger, LogLevel } from './Logger';
 
 export interface ConsoleLoggerArgs {
   logLevel: string;
 }
 
-export class ConsoleLogger implements ILogger {
+export class ConsoleLogger implements Logger {
   private readonly logLevel: LogLevel;
 
   constructor(args: ConsoleLoggerArgs) {
