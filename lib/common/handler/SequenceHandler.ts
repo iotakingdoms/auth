@@ -1,26 +1,13 @@
 import { IHandler } from './IHandler';
+import { NestedHandler } from './NestedHandler';
 
 export interface SequenceHandlerArgs<TIn, TOut> {
   handlers: IHandler<TIn, TOut>[];
 }
 
-export class SequenceHandler<TIn, TOut> implements IHandler<TIn, TOut[]> {
-  private readonly handlers: IHandler<TIn, TOut>[];
-
+export class SequenceHandler<TIn, TOut> extends NestedHandler<TIn, TOut> {
   constructor(args: SequenceHandlerArgs<TIn, TOut>) {
-    this.handlers = args.handlers;
-  }
-
-  async initialize(): Promise<void> {
-    await Promise.all(this.handlers.map(async (handler) => handler.initialize()));
-  }
-
-  async terminate(): Promise<void> {
-    await Promise.all(this.handlers.map(async (handler) => handler.terminate()));
-  }
-
-  canHandle(input: TIn): boolean {
-    return this.handlers.map((handler) => handler.canHandle(input)).some((canHandle) => canHandle);
+    super({ handlers: args.handlers });
   }
 
   async handle(input: TIn): Promise<TOut[]> {
