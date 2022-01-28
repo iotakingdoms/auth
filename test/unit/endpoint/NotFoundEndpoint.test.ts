@@ -1,10 +1,10 @@
 import { createRequest, createResponse } from 'node-mocks-http';
-import { ILogger } from '../../../../lib/logger/ILogger';
-import { HttpHandlerInput } from '../../../../lib/server/HttpHandler';
-import { NotFoundHandler } from '../../../../lib/server/middleware/NotFoundHandler';
+import { Logger } from '../../../lib/logger/Logger';
+import { NotFoundEndpoint } from '../../../lib/endpoint/NotFoundEndpoint';
+import { HttpHandlerInput } from '../../../lib/http/HttpHandler';
 
-describe('NotFoundHandler', () => {
-  let logger: ILogger;
+describe('NotFoundEndpoint', () => {
+  let logger: Logger;
 
   beforeAll(() => {
     logger = {
@@ -17,7 +17,7 @@ describe('NotFoundHandler', () => {
   });
 
   it('can handle requests', async () => {
-    const handler = new NotFoundHandler({ logger });
+    const handler = new NotFoundEndpoint({ logger });
     await handler.initialize();
     const input: HttpHandlerInput = { request: createRequest(), response: createResponse() };
     expect(handler.canHandle(input)).toBeTruthy();

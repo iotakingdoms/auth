@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { LogLevel } from "../../../lib/logger/ILogger";
+import { LogLevel } from '../../../lib/logger/Logger';
 import { ConsoleLogger } from '../../../lib/logger/ConsoleLogger';
 
 describe('ConsoleLogger', () => {

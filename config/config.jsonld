@@ -5,11 +5,7 @@
   ],
   "import": [
     "logger/console.jsonld",
-    "server/http.jsonld",
-    "server/middleware/router.jsonld",
-    "server/middleware/not-found.jsonld",
-    "server/middleware/prometheus.jsonld",
-    "server/middleware/version.jsonld",
+    "http/http.jsonld",
     "app/app.jsonld"
   ],
   "@graph": []

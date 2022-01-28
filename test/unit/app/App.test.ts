@@ -1,10 +1,10 @@
 import { App } from '../../../lib/app/App';
-import { ILogger } from '../../../lib/logger/ILogger';
-import { IServer } from '../../../lib/server/IServer';
+import { Initializable } from '../../../lib/common/Initializable';
+import { Logger } from '../../../lib/logger/Logger';
 
 describe('App', () => {
-  let logger: ILogger;
-  let server: IServer;
+  let logger: Logger;
+  let httpServer: Initializable;
 
   beforeAll(() => {
     logger = {
@@ -14,15 +14,16 @@ describe('App', () => {
       error: jest.fn(),
       log: jest.fn(),
     };
-    server = {
-      start: jest.fn(),
-      stop: jest.fn(),
+
+    httpServer = {
+      initialize: jest.fn(),
+      terminate: jest.fn(),
     };
   });
 
   it('can start and stop', async () => {
-    const app = new App({ logger, server });
-    await app.start();
-    await app.stop();
+    const app = new App({ logger, httpServer });
+    await app.initialize();
+    await app.terminate();
   });
 });

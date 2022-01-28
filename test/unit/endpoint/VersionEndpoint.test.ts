@@ -1,10 +1,10 @@
 import { createRequest, createResponse } from 'node-mocks-http';
-import { ILogger } from '../../../../lib/logger/ILogger';
-import { HttpHandlerInput } from '../../../../lib/server/HttpHandler';
-import { VersionHandler } from '../../../../lib/server/middleware/VersionHandler';
+import { Logger } from '../../../lib/logger/Logger';
+import { VersionEndpoint } from '../../../lib/endpoint/VersionEndpoint';
+import { HttpHandlerInput } from '../../../lib/http/HttpHandler';
 
-describe('VersionHandler', () => {
-  let logger: ILogger;
+describe('VersionEndpoint', () => {
+  let logger: Logger;
 
   beforeAll(() => {
     logger = {
@@ -17,7 +17,7 @@ describe('VersionHandler', () => {
   });
 
   it('can handle requests', async () => {
-    const handler = new VersionHandler({ logger });
+    const handler = new VersionEndpoint({ logger });
     await handler.initialize();
     const input: HttpHandlerInput = { request: createRequest(), response: createResponse() };
     expect(handler.canHandle(input)).toBeTruthy();
