@@ -1,7 +1,6 @@
 import { ILogger, LogLevel } from '../../logger/ILogger';
 import { HttpHandler, HttpHandlerInput, HttpHandlerOutput } from '../HttpHandler';
 import { Request } from '../Request';
-// import { Response } from '../Response';
 
 export interface RouteHandlerArgs {
   logger: ILogger;

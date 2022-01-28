@@ -1,6 +1,6 @@
 import { ComponentsManager } from 'componentsjs';
 import * as Path from 'path';
-import yargs, { Arguments } from 'yargs';
+import yargs from 'yargs';
 import { IApp } from './IApp';
 
 export default class AppRunner {
