@@ -16,10 +16,12 @@ export abstract class NestedHandler<TIn, TOut> extends Initializer implements Ha
   }
 
   async initialize(): Promise<void> {
+    await super.initialize();
     await Promise.all(this.handlers.map(async (handler) => handler.initialize()));
   }
 
   async terminate(): Promise<void> {
+    await super.terminate();
     await Promise.all(this.handlers.map(async (handler) => handler.terminate()));
   }
 
