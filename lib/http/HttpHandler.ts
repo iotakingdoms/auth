@@ -22,16 +22,6 @@ export class HttpHandler extends WaterfallHandler<HttpHandlerInput> {
     this.path = args.path;
   }
 
-  async initialize(): Promise<void> {
-    await super.initialize();
-    this.logger.log(LogLevel.Info, 'Initialized HttpHandler');
-  }
-
-  async terminate(): Promise<void> {
-    await super.terminate();
-    this.logger.log(LogLevel.Info, 'Initialized HttpHandler');
-  }
-
   canHandle(input: HttpHandlerInput): boolean {
     const request = input.request as IncomingMessage;
     if (!request.url) return false;
