@@ -12,8 +12,11 @@
         "@id": "urn:@iotakingdoms/auth:variable:port",
         "@type": "Variable"
       },
-      "args_middlewares": [
-        { "@id": "urn:@iotakingdoms/auth:server:middleware:router" }
+      "args_handler": [
+        {
+          "@type": "WaterfallHandler",
+          "args_handler": []
+        }
       ]
     }
   ]

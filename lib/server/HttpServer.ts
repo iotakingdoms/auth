@@ -1,14 +1,15 @@
 import { Server, createServer } from 'http';
-import { HttpHandler } from './HttpHandler';
+import { HttpHandler, HttpHandlerInput, HttpHandlerOutput } from './HttpHandler';
 import { ILogger, LogLevel } from '../logger/ILogger';
 import { IServer } from './IServer';
 import { Request } from './Request';
 import { Response } from './Response';
+import { IHandler } from '../common/handler/IHandler';
 
 export interface HttpServerArgs {
   logger: ILogger;
   port: number;
-  middlewares: HttpHandler[];
+  handler: IHandler<HttpHandlerInput, HttpHandlerOutput>;
 }
 
 export class HttpServer implements IServer {
@@ -16,23 +17,23 @@ export class HttpServer implements IServer {
 
   private readonly port: number;
 
-  private readonly middlewares: HttpHandler[];
+  private readonly handler: IHandler<HttpHandlerInput, HttpHandlerOutput>;
 
   private server: Server | undefined;
 
   constructor(args: HttpServerArgs) {
     this.logger = args.logger;
     this.port = args.port;
-    this.middlewares = args.middlewares;
+    this.handler = args.handler;
 
-    this.invokeMiddlewares = this.invokeMiddlewares.bind(this);
+    this.invokeHandler = this.invokeHandler.bind(this);
   }
 
   async start(): Promise<void> {
-    await Promise.all(this.middlewares.map((middleware) => middleware.initialize()));
+    await this.handler.initialize();
 
     return new Promise((resolve) => {
-      this.server = createServer(this.invokeMiddlewares);
+      this.server = createServer(this.invokeHandler);
       this.server.listen(this.port, () => {
         this.logger.log(LogLevel.Info, `Http server started on port: ${this.port}.`);
         resolve();
@@ -41,7 +42,7 @@ export class HttpServer implements IServer {
   }
 
   async stop(): Promise<void> {
-    await Promise.all(this.middlewares.map((middleware) => middleware.terminate()));
+    await this.handler.terminate();
 
     return new Promise((resolve, reject) => {
       if (!this.server) {
@@ -63,12 +64,7 @@ export class HttpServer implements IServer {
     });
   }
 
-  async invokeMiddlewares(request: Request, response: Response): Promise<void> {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const middleware of this.middlewares) {
-      // eslint-disable-next-line no-await-in-loop
-      const output = await middleware.handle({ request, response });
-      if (output.swallowed) break;
-    }
+  async invokeHandler(request: Request, response: Response): Promise<void> {
+    await this.handler.handle({ request, response });
   }
 }
