@@ -5,8 +5,8 @@
   ],
   "@graph": [
     {
-      "@id": "urn:@iotakingdoms/auth:server:middleware:prometheus",
-      "@type": "PrometheusHandler",
+      "@id": "urn:@iotakingdoms/auth:endpoint:prometheus",
+      "@type": "PrometheusEndpoint",
       "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
     }
   ]

@@ -4,9 +4,13 @@
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld"
   ],
   "import": [
-    "logger/console.jsonld",
+    "app/app.jsonld",
+    "endpoint/router.jsonld",
+    "endpoint/not-found.jsonld",
+    "endpoint/version.jsonld",
+    "endpoint/prometheus.jsonld",
     "http/http.jsonld",
-    "app/app.jsonld"
+    "logger/console.jsonld"
   ],
   "@graph": []
 }
