@@ -1,0 +1,13 @@
+name: CI
+on: workflow_dispatch
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/npm-audit@main
