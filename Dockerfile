@@ -13,6 +13,7 @@ RUN npm prune --production
 
 # Application image
 FROM node:17-alpine
+RUN apk --no-cache add curl
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=BUILD_IMAGE /app/package.json ./
