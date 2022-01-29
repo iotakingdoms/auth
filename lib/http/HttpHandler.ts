@@ -1,7 +1,7 @@
 import { IncomingMessage } from 'http';
 import { Handler } from '../common/handler/Handler';
 import { WaterfallHandler } from '../common/handler/WaterfallHandler';
-import { Logger, LogLevel } from '../logger/Logger';
+import { Logger } from '../logger/Logger';
 
 export interface HttpHandlerInput {
   request: any;
