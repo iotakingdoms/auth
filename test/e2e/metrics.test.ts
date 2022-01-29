@@ -1,5 +1,5 @@
 describe('Metrics', () => {
-  it('serves a metrics with ', async () => {
+  it('serves metrics response ', async () => {
     await page.goto('http://localhost:8080/metrics', { waitUntil: 'domcontentloaded' });
     const text = await page.$eval('body pre', (el) => el.innerHTML);
     expect(text).toMatch('process_cpu_user_seconds_total');
