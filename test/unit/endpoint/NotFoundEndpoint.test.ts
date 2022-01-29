@@ -19,9 +19,13 @@ describe('NotFoundEndpoint', () => {
   it('can handle requests', async () => {
     const handler = new NotFoundEndpoint({ logger });
     await handler.initialize();
-    const input: HttpHandlerInput = { request: createRequest(), response: createResponse() };
+    const response = createResponse();
+    response.end = jest.fn();
+    const input: HttpHandlerInput = { request: createRequest(), response };
     expect(handler.canHandle(input)).toBeTruthy();
     await handler.handle(input);
+    expect(response.statusCode).toBe(404);
+    expect(response.end).toHaveBeenCalledWith('Not found');
     await handler.terminate();
   });
 });

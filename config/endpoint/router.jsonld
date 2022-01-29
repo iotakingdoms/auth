@@ -33,6 +33,16 @@
         {
           "@type": "HttpHandler",
           "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+          "args_path": "/health",
+          "args_handlers": [
+            {
+              "@id": "urn:@iotakingdoms/auth:endpoint:health"
+            }
+          ]
+        },
+        {
+          "@type": "HttpHandler",
+          "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
           "args_path": "/",
           "args_handlers": [
             {
