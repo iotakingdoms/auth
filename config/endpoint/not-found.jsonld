@@ -5,8 +5,8 @@
   ],
   "@graph": [
     {
-      "@id": "urn:@iotakingdoms/auth:server:middleware:version",
-      "@type": "VersionHandler",
+      "@id": "urn:@iotakingdoms/auth:endpoint:not-found",
+      "@type": "NotFoundEndpoint",
       "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
     }
   ]

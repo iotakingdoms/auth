@@ -1,0 +1,46 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld"
+  ],
+  "@graph": [
+    {
+      "@id": "urn:@iotakingdoms/auth:endpoint:router",
+      "@type": "HttpHandler",
+      "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+      "args_path": "/",
+      "args_handlers": [
+        {
+          "@type": "HttpHandler",
+          "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+          "args_path": "/metrics",
+          "args_handlers": [
+            {
+              "@id": "urn:@iotakingdoms/auth:endpoint:prometheus"
+            }
+          ]
+        },
+        {
+          "@type": "HttpHandler",
+          "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+          "args_path": "/version",
+          "args_handlers": [
+            {
+              "@id": "urn:@iotakingdoms/auth:endpoint:version"
+            }
+          ]
+        },
+        {
+          "@type": "HttpHandler",
+          "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+          "args_path": "/",
+          "args_handlers": [
+            {
+              "@id": "urn:@iotakingdoms/auth:endpoint:not-found"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

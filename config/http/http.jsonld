@@ -13,44 +13,7 @@
         "@type": "Variable"
       },
       "args_handler": {
-        "@type": "HttpHandler",
-        "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
-        "args_path": "/",
-        "args_handlers": [
-          {
-            "@type": "HttpHandler",
-            "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
-            "args_path": "/metrics",
-            "args_handlers": [
-              {
-                "@type": "PrometheusEndpoint",
-                "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
-              }
-            ]
-          },
-          {
-            "@type": "HttpHandler",
-            "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
-            "args_path": "/version",
-            "args_handlers": [
-              {
-                "@type": "VersionEndpoint",
-                "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
-              }
-            ]
-          },
-          {
-            "@type": "HttpHandler",
-            "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
-            "args_path": "/",
-            "args_handlers": [
-              {
-                "@type": "NotFoundEndpoint",
-                "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
-              }
-            ]
-          }
-        ]
+        "@id": "urn:@iotakingdoms/auth:endpoint:router"
       }
     }
   ]
