@@ -1,9 +1,9 @@
 import { createRequest, createResponse } from 'node-mocks-http';
 import { Logger } from '../../../lib/logger/Logger';
-import { VersionEndpoint } from '../../../lib/endpoint/VersionEndpoint';
+import { HealthEndpoint } from '../../../lib/endpoint/HealthEndpoint';
 import { HttpHandlerInput } from '../../../lib/http/HttpHandler';
 
-describe('VersionEndpoint', () => {
+describe('HealthEndpoint', () => {
   let logger: Logger;
 
   beforeAll(() => {
@@ -17,7 +17,7 @@ describe('VersionEndpoint', () => {
   });
 
   it('can handle requests', async () => {
-    const handler = new VersionEndpoint({ logger });
+    const handler = new HealthEndpoint({ logger });
     await handler.initialize();
     const response = createResponse();
     response.end = jest.fn();
@@ -25,7 +25,7 @@ describe('VersionEndpoint', () => {
     expect(handler.canHandle(input)).toBeTruthy();
     await handler.handle(input);
     expect(response.statusCode).toBe(200);
-    expect(response.end).toHaveBeenCalledWith(`Version: ${process.env.npm_package_version}`);
+    expect(response.end).toHaveBeenCalledWith('OK');
     await handler.terminate();
   });
 });
