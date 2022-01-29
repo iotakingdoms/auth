@@ -102,9 +102,10 @@ jobs:
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
         with:
-          fetch-depth: 0
+          args: "--ignore-scripts"
+      - run: npm run test:unit
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
