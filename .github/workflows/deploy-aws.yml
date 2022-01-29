@@ -1,0 +1,6 @@
+name: Deploy AWS
+on: workflow_dispatch
+jobs:
+  deploy:
+    steps:
+      - run: aws ecs update-service --cluster auth-cluster --service auth-service --force-new-deployment
