@@ -2,6 +2,7 @@ name: Deploy AWS
 on: workflow_dispatch
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     steps:
       - name: Force redeployment
         run: aws ecs update-service --cluster auth-cluster --service auth-service --force-new-deployment
