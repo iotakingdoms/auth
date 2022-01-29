@@ -10,7 +10,7 @@ const mockComponentsManager = {
   configRegistry: {
     register: jest.fn(),
   },
-  instantiate: jest.fn(async () => mockApp),
+  instantiate: jest.fn(async (): Promise<Initializable | undefined> => mockApp),
 };
 
 jest.mock('componentsjs', () => ({
@@ -20,10 +20,6 @@ jest.mock('componentsjs', () => ({
 }));
 
 describe('AppRunner', () => {
-  beforeAll(() => {
-    // NOP
-  });
-
   it('can initialize and terminate an app', async () => {
     const appRunner = new AppRunner();
     await appRunner.initialize();
@@ -32,5 +28,11 @@ describe('AppRunner', () => {
     expect(mockApp.initialize).toHaveBeenCalled();
     await appRunner.terminate();
     expect(mockApp.terminate).toHaveBeenCalled();
+  });
+
+  it('throws if the app fail to instantiate', async () => {
+    mockComponentsManager.instantiate.mockImplementationOnce(async () => undefined);
+    const appRunner = new AppRunner();
+    await expect(appRunner.initialize).rejects.toThrowError('Failed to instantiate application');
   });
 });

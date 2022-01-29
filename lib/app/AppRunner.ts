@@ -46,7 +46,16 @@ export default class AppRunner implements Initializable {
       mainModulePath: Path.join(__dirname, '/../..'),
     });
     await manager.configRegistry.register(argv.config);
-    this.app = await manager.instantiate(argv.entrypoint, { variables }) as Initializable;
+    const app: Initializable | undefined = await manager.instantiate(argv.entrypoint, {
+      variables,
+    });
+
+    if (!app) {
+      throw new Error('Failed to instantiate application');
+    }
+
+    this.app = app;
+
     await this.app.initialize();
   }
 
