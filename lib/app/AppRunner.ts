@@ -4,7 +4,7 @@ import yargs from 'yargs';
 import { Initializable } from '../common/Initializable';
 
 export default class AppRunner implements Initializable {
-  private readonly app: Initializable | undefined;
+  private app: Initializable | undefined;
 
   async initialize() {
     const argv = await yargs(process.argv.slice(2))
@@ -46,8 +46,8 @@ export default class AppRunner implements Initializable {
       mainModulePath: Path.join(__dirname, '/../..'),
     });
     await manager.configRegistry.register(argv.config);
-    const app = await manager.instantiate(argv.entrypoint, { variables }) as Initializable;
-    await app.initialize();
+    this.app = await manager.instantiate(argv.entrypoint, { variables }) as Initializable;
+    await this.app.initialize();
   }
 
   async terminate(): Promise<void> {
