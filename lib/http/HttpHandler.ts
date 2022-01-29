@@ -31,7 +31,7 @@ export class HttpHandler extends WaterfallHandler<HttpHandlerInput> {
   }
 
   async handle(input: HttpHandlerInput): Promise<void> {
-    const request = input.request as IncomingMessage;
+    const { request, response } = input;
 
     if (!request.url) return;
 
@@ -43,7 +43,7 @@ export class HttpHandler extends WaterfallHandler<HttpHandlerInput> {
       request.url = request.url.slice(this.path.length);
     }
 
-    const newInput = { request, response: input.response };
+    const newInput = { request, response };
 
     const handlers = this.handlers.filter((handler) => handler.canHandle(newInput));
     if (handlers[0]) {
