@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Force redeployment
-        run: aws ecs update-service --cluster iotakingdoms-production --service auth-service --force-new-deployment
+        run: aws ecs update-service --cluster iotakingdoms-production --service auth-service-2 --force-new-deployment
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
