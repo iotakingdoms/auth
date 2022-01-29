@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/iotakingdoms/auth/compare/v0.0.9...v0.0.10) (2022-01-29)
+
+
+### Features
+
+* add SequenceHandler ([48f2e34](https://github.com/iotakingdoms/auth/commit/48f2e3467a10a32f7f8b30a28d499bbc4e56cc41))
+* automatically build project upon 'npm install' ([7674997](https://github.com/iotakingdoms/auth/commit/76749972c76f013fcf36874e0a501e7e63bbe30e))
+
+
+### Bug Fixes
+
+* audit workflow name ([b265460](https://github.com/iotakingdoms/auth/commit/b2654604f454a910b8cc63dfc8ada57f35b1c263))
+* missing super initialize & terminate calls ([06cd8ee](https://github.com/iotakingdoms/auth/commit/06cd8ee6f1f701e0f8463562f6e7c58a1262ecdb))
+* now npm lint script checks both 'lib' and 'src' directories ([4c85d57](https://github.com/iotakingdoms/auth/commit/4c85d5741fc451a665fb50a7b05f6ac5acdd6118))
+* remove unused code ([3454554](https://github.com/iotakingdoms/auth/commit/3454554139dcb80048895ee5a43d84d9cf082434))
+* remove unused code ([c4e62d0](https://github.com/iotakingdoms/auth/commit/c4e62d0cad681b148c204c94ef04abce20fe4f2d))
+
 ### [0.0.9](https://github.com/iotakingdoms/auth/compare/v0.0.8...v0.0.9) (2022-01-27)
 
 ### [0.0.8](https://github.com/iotakingdoms/auth/compare/v0.0.7...v0.0.8) (2022-01-26)
