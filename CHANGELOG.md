@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/iotakingdoms/auth/compare/v0.0.10...v0.0.11) (2022-01-29)
+
+
+### Features
+
+* add health endpoint ([a38e3bf](https://github.com/iotakingdoms/auth/commit/a38e3bfceada1cc4085dbe0bfb4d6a2cb7967fd5))
+
+
+### Bug Fixes
+
+* cover edge case if app fails to initialize ([a582805](https://github.com/iotakingdoms/auth/commit/a5828055e0448d079ecdf8aea5aff9730b9e3532))
+* **deps:** update dependency componentsjs to v5.0.0-beta.4 ([cbe993f](https://github.com/iotakingdoms/auth/commit/cbe993f84109d4a785e3e3ebf49b0f06f5b6a4c1))
+* incorrect naming of test ([5c1e2b4](https://github.com/iotakingdoms/auth/commit/5c1e2b421b07d8ffabaed6f7a1811e0b90763c63))
+* mock yargs in unit test ([ea95270](https://github.com/iotakingdoms/auth/commit/ea952700e6ea4371f184f43025029ab982a18ff7))
+* remove unused import ([477551f](https://github.com/iotakingdoms/auth/commit/477551f74867480b53b766677cddce542d12b4e6))
+* test app entrypoint ([db92789](https://github.com/iotakingdoms/auth/commit/db92789820f38b659b3b728182bbb58fb75a424e))
+
 ### [0.0.10](https://github.com/iotakingdoms/auth/compare/v0.0.9...v0.0.10) (2022-01-29)
 
 
