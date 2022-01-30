@@ -10,7 +10,7 @@
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/dist/": "dist/"
   },
   "name": "@iotakingdoms/auth",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
