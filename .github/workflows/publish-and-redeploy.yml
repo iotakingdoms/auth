@@ -52,6 +52,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
   redeploy-aws:
+    environment: production
     needs:
       - publish-npm-package
       - publish-docker-image
@@ -59,11 +60,11 @@ jobs:
     steps:
       - uses: iotakingdoms/actions/packages/wait@main
         with:
-          duration: 10s
+          duration: 5s
       - uses: iotakingdoms/actions/packages/aws-redeploy@main
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region: eu-north-1
-          cluster: iotakingdoms-production
-          service: ik-auth-service
+          region: ${{ secrets.AWS_REGION }}
+          cluster: ${{ secrets.AWS_CLUSTER }}
+          service: ${{ secrets.AWS_SERVICE }}
