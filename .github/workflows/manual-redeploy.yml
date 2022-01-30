@@ -6,6 +6,7 @@ on:
         description: "Environment"
         required: true
         default: "staging"
+jobs:
   redeploy:
     environment: ${{ input.environment }}
     runs-on: ubuntu-latest
