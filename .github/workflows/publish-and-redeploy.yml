@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: Publish and redeploy
 on:
   push:
     tags:
@@ -7,7 +7,22 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 jobs:
-  build-and-push-image:
+  publish-npm-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "17.x"
+          registry-url: "https://npm.pkg.github.com"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  publish-docker-image:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -36,9 +51,15 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+  redeploy-aws:
+    needs:
+      - publish-npm-package
+      - publish-docker-image
+    runs-on: ubuntu-latest
+    steps:
       - uses: iotakingdoms/actions/packages/wait@main
         with:
-          duration: 1m
+          duration: 10s
       - uses: iotakingdoms/actions/packages/aws-redeploy@main
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
