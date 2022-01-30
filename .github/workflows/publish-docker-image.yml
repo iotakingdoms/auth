@@ -36,6 +36,9 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - uses: iotakingdoms/actions/packages/wait@main
+        with:
+          duration: 1m
       - uses: iotakingdoms/actions/packages/aws-redeploy@main
         with:
           access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
