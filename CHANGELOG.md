@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/iotakingdoms/auth/compare/v0.0.13...v0.0.14) (2022-01-30)
+
+
+### Bug Fixes
+
+* adjust cluster name ([59a7402](https://github.com/iotakingdoms/auth/commit/59a74023c4b490f0b2cb691ef033731387ca2467))
+
 ### [0.0.13](https://github.com/iotakingdoms/auth/compare/v0.0.12...v0.0.13) (2022-01-29)
 
 ### [0.0.12](https://github.com/iotakingdoms/auth/compare/v0.0.11...v0.0.12) (2022-01-29)
