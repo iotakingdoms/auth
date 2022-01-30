@@ -1,5 +1,10 @@
 name: AWS Redeploy
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Publish Docker image"]
+    type:
+      - complete
 jobs:
   deploy:
     runs-on: ubuntu-latest
