@@ -8,7 +8,7 @@ on:
         default: "staging"
 jobs:
   redeploy:
-    environment: ${{ inputs.environment }}
+    environment: ${{ github.event.inputs.environment }}
     runs-on: ubuntu-latest
     steps:
       - uses: iotakingdoms/actions/packages/aws-redeploy@main
