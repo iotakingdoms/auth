@@ -17,24 +17,28 @@ jest.mock('componentsjs', () => ({
   },
 }));
 
-const mockYargs = {
-  port: 8080,
-  logLevel: 'Info',
-  config: 'config/config.jsonld',
-  entrypoint: 'urn:@iotakingdoms/auth:app',
-};
-
-jest.mock('yargs', () => () => ({
+const yargs = {
   env: jest.fn().mockReturnThis(),
   usage: jest.fn().mockReturnThis(),
   options: jest.fn().mockReturnThis(),
-  parse: jest.fn(async () => (mockYargs)),
-}));
+  parse: jest.fn(async () => ({
+    port: 8080,
+    logLevel: 'Info',
+    config: 'config/config.jsonld',
+    entrypoint: 'urn:@iotakingdoms/auth:app',
+  })),
+};
+
+jest.mock('yargs', () => () => yargs);
 
 describe('AppRunner', () => {
   it('can initialize and terminate an app', async () => {
     const appRunner = new AppRunner();
     await appRunner.initialize();
+    expect(yargs.env).toHaveBeenCalledWith('APP');
+    expect(yargs.usage).toHaveBeenCalledWith('node ./dist/start.js [args]');
+    expect(yargs.options).toHaveBeenCalled();
+    expect(yargs.parse).toHaveBeenCalled();
     expect(mockComponentsManager.configRegistry.register).toHaveBeenCalled();
     expect(mockComponentsManager.instantiate).toHaveBeenCalledWith(
       'urn:@iotakingdoms/auth:app',
