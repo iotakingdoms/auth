@@ -1,43 +1,21 @@
 import { Logger } from '../../../../lib/logger/Logger';
 import { Handler } from '../../../../lib/common/handler/Handler';
 import { SequenceHandler } from '../../../../lib/common/handler/SequenceHandler';
+import { mockLogger } from '../../mocks/logger/Logger';
+import { mockHandler } from '../../mocks/common/handler/Handler';
 
 describe('SequenceHandler', () => {
-  let logger: Logger;
+  let logger: jest.Mocked<Logger>;
   let nestedHandler1: jest.Mocked<Handler<string, void>>;
   let nestedHandler2: jest.Mocked<Handler<string, void>>;
   let nestedHandler3: jest.Mocked<Handler<string, void>>;
   let sequenceHandler: SequenceHandler<string>;
 
   beforeAll(() => {
-    logger = {
-      debug: jest.fn(),
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
-      log: jest.fn(),
-    };
-
-    nestedHandler1 = {
-      initialize: jest.fn(),
-      terminate: jest.fn(),
-      canHandle: jest.fn((input: string): boolean => true),
-      handle: jest.fn(async (input: string): Promise<void> => {}),
-    };
-
-    nestedHandler2 = {
-      initialize: jest.fn(),
-      terminate: jest.fn(),
-      canHandle: jest.fn((input: string): boolean => true),
-      handle: jest.fn(async (input: string): Promise<void> => {}),
-    };
-
-    nestedHandler3 = {
-      initialize: jest.fn(),
-      terminate: jest.fn(),
-      canHandle: jest.fn((input: string): boolean => true),
-      handle: jest.fn(async (input: string): Promise<void> => {}),
-    };
+    logger = mockLogger();
+    nestedHandler1 = mockHandler();
+    nestedHandler2 = mockHandler();
+    nestedHandler3 = mockHandler();
 
     sequenceHandler = new SequenceHandler<string>({
       logger,

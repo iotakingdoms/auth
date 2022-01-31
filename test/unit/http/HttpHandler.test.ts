@@ -2,34 +2,18 @@ import { createRequest, createResponse } from 'node-mocks-http';
 import { Handler } from '../../../lib/common/handler/Handler';
 import { Logger } from '../../../lib/logger/Logger';
 import { HttpHandler, HttpHandlerInput } from '../../../lib/http/HttpHandler';
+import { mockLogger } from '../mocks/logger/Logger';
+import { mockEndpoint } from '../mocks/endpoint/Endpoint';
 
 describe('HttpHandler', () => {
-  let logger: Logger;
-  let endpoint1: Handler<HttpHandlerInput, void>;
-  let endpoint2: Handler<HttpHandlerInput, void>;
+  let logger: jest.Mocked<Logger>;
+  let endpoint1: jest.Mocked<Handler<HttpHandlerInput, void>>;
+  let endpoint2: jest.Mocked<Handler<HttpHandlerInput, void>>;
 
   beforeAll(async () => {
-    logger = {
-      debug: jest.fn(),
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
-      log: jest.fn(),
-    };
-
-    endpoint1 = {
-      initialize: jest.fn(),
-      terminate: jest.fn(),
-      canHandle: jest.fn(() => true),
-      handle: jest.fn(async () => {}),
-    };
-
-    endpoint2 = {
-      initialize: jest.fn(),
-      terminate: jest.fn(),
-      canHandle: jest.fn(() => true),
-      handle: jest.fn(async () => {}),
-    };
+    logger = mockLogger();
+    endpoint1 = mockEndpoint();
+    endpoint2 = mockEndpoint();
   });
 
   describe('Non-nested', () => {
