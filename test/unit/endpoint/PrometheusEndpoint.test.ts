@@ -3,6 +3,7 @@ import { createRequest, createResponse } from 'node-mocks-http';
 import { Logger } from '../../../lib/logger/Logger';
 import { PrometheusEndpoint } from '../../../lib/endpoint/PrometheusEndpoint';
 import { HttpHandlerInput } from '../../../lib/http/HttpHandler';
+import { mockLogger } from '../mocks/logger/Logger';
 
 jest.mock('prom-client');
 
@@ -12,6 +13,8 @@ describe('PrometheusEndpoint', () => {
   let spyRegistry: jest.SpyInstance<PromClient.Registry>;
 
   beforeAll(() => {
+    logger = mockLogger();
+
     mockRegistry = {
       setDefaultLabels: jest.fn(),
       clear: jest.fn(),
@@ -21,14 +24,6 @@ describe('PrometheusEndpoint', () => {
 
     spyRegistry = jest.spyOn(PromClient, 'Registry')
       .mockImplementation(jest.fn().mockImplementation(() => mockRegistry));
-
-    logger = {
-      debug: jest.fn(),
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
-      log: jest.fn(),
-    };
   });
 
   beforeEach(() => {

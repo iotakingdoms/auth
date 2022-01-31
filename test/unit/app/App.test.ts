@@ -1,24 +1,16 @@
 import { App } from '../../../lib/app/App';
 import { Initializable } from '../../../lib/common/Initializable';
 import { Logger } from '../../../lib/logger/Logger';
+import { mockHttpServer } from '../mocks/http/HttpServer';
+import { mockLogger } from '../mocks/logger/Logger';
 
 describe('App', () => {
-  let logger: Logger;
-  let httpServer: Initializable;
+  let logger: jest.Mocked<Logger>;
+  let httpServer: jest.Mocked<Initializable>;
 
   beforeAll(() => {
-    logger = {
-      debug: jest.fn(),
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
-      log: jest.fn(),
-    };
-
-    httpServer = {
-      initialize: jest.fn(),
-      terminate: jest.fn(),
-    };
+    logger = mockLogger();
+    httpServer = mockHttpServer();
   });
 
   it('can start and stop', async () => {

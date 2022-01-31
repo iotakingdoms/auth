@@ -1,16 +1,14 @@
 import AppRunner from '../../../lib/app/AppRunner';
 import { Initializable } from '../../../lib/common/Initializable';
+import { mockApp } from '../mocks/app/App';
 
-const mockApp: Initializable = {
-  initialize: jest.fn(),
-  terminate: jest.fn(),
-};
+const app: Initializable = mockApp();
 
 const mockComponentsManager = {
   configRegistry: {
     register: jest.fn(),
   },
-  instantiate: jest.fn(async (): Promise<Initializable | undefined> => mockApp),
+  instantiate: jest.fn(async (): Promise<Initializable | undefined> => app),
 };
 
 jest.mock('componentsjs', () => ({
@@ -31,13 +29,7 @@ jest.mock('yargs', () => () => ({
     })),
   })),
 }));
-/*
-jest.mock('yargs', () => ({
-  default: jest.fn(async () => ({
-    usage: jest.fn(),
-  })),
-}));
-*/
+
 describe('AppRunner', () => {
   it('can initialize and terminate an app', async () => {
     const appRunner = new AppRunner();
@@ -52,9 +44,9 @@ describe('AppRunner', () => {
         },
       },
     );
-    expect(mockApp.initialize).toHaveBeenCalled();
+    expect(app.initialize).toHaveBeenCalled();
     await appRunner.terminate();
-    expect(mockApp.terminate).toHaveBeenCalled();
+    expect(app.terminate).toHaveBeenCalled();
   });
 
   it('throws if the app fail to instantiate', async () => {

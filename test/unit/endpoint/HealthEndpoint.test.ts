@@ -2,18 +2,13 @@ import { createRequest, createResponse } from 'node-mocks-http';
 import { Logger } from '../../../lib/logger/Logger';
 import { HealthEndpoint } from '../../../lib/endpoint/HealthEndpoint';
 import { HttpHandlerInput } from '../../../lib/http/HttpHandler';
+import { mockLogger } from '../mocks/logger/Logger';
 
 describe('HealthEndpoint', () => {
   let logger: Logger;
 
   beforeAll(() => {
-    logger = {
-      debug: jest.fn(),
-      info: jest.fn(),
-      warn: jest.fn(),
-      error: jest.fn(),
-      log: jest.fn(),
-    };
+    logger = mockLogger();
   });
 
   it('can handle requests', async () => {
