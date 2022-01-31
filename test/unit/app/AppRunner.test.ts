@@ -17,17 +17,18 @@ jest.mock('componentsjs', () => ({
   },
 }));
 
+const mockYargs = {
+  port: 8080,
+  logLevel: 'Info',
+  config: 'config/config.jsonld',
+  entrypoint: 'urn:@iotakingdoms/auth:app',
+};
+
 jest.mock('yargs', () => () => ({
-  usage: jest.fn(() => ({
-    options: jest.fn(() => ({
-      parse: jest.fn(async () => ({
-        port: 8080,
-        logLevel: 'Info',
-        config: 'config/config.jsonld',
-        entrypoint: 'urn:@iotakingdoms/auth:app',
-      })),
-    })),
-  })),
+  env: jest.fn().mockReturnThis(),
+  usage: jest.fn().mockReturnThis(),
+  options: jest.fn().mockReturnThis(),
+  parse: jest.fn(async () => (mockYargs)),
 }));
 
 describe('AppRunner', () => {
