@@ -8,6 +8,7 @@ export default class AppRunner implements Initializable {
 
   async initialize() {
     const argv = await yargs(process.argv.slice(2))
+      .env('APP')
       .usage('node ./dist/start.js [args]')
       .options({
         config: {
