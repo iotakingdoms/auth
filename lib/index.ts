@@ -13,6 +13,7 @@ export * from './http/HttpHandler';
 export * from './endpoint/Endpoint';
 export * from './endpoint/HealthEndpoint';
 export * from './endpoint/NotFoundEndpoint';
+export * from './endpoint/OidcEndpoint';
 export * from './endpoint/PrometheusEndpoint';
 export * from './endpoint/VersionEndpoint';
 export * from './http/HttpServer';

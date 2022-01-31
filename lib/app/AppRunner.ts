@@ -11,6 +11,12 @@ export default class AppRunner implements Initializable {
       .env('APP')
       .usage('node ./dist/start.js [args]')
       .options({
+        baseUrl: {
+          type: 'string',
+          alias: 'b',
+          default: 'http://localhost:8080',
+          requiresArg: true,
+        },
         config: {
           type: 'string',
           alias: 'c',
@@ -39,6 +45,7 @@ export default class AppRunner implements Initializable {
       .parse();
 
     const variables = {
+      'urn:@iotakingdoms/auth:variable:baseUrl': argv.baseUrl,
       'urn:@iotakingdoms/auth:variable:port': argv.port,
       'urn:@iotakingdoms/auth:variable:logLevel': argv.logLevel,
     };

@@ -8,6 +8,7 @@
     "endpoint/router.jsonld",
     "endpoint/health.jsonld",
     "endpoint/not-found.jsonld",
+    "endpoint/oidc.jsonld",
     "endpoint/version.jsonld",
     "endpoint/prometheus.jsonld",
     "http/http.jsonld",

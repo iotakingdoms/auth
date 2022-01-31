@@ -46,7 +46,7 @@
           "args_path": "/",
           "args_handlers": [
             {
-              "@id": "urn:@iotakingdoms/auth:endpoint:not-found"
+              "@id": "urn:@iotakingdoms/auth:endpoint:oidc"
             }
           ]
         }
