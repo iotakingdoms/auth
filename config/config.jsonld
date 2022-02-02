@@ -1,7 +1,7 @@
 {
   "@context": [
     "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld",
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/common/*/dist/components/context.jsonld"
   ],
   "import": [

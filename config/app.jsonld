@@ -1,18 +1,18 @@
 {
   "@context": [
     "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld",
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/common/*/dist/components/context.jsonld"
   ],
   "@graph": [
     {
-      "@id": "urn:ixuz-test-2:app",
+      "@id": "urn:@iotakingdoms/auth:app",
       "@type": "App",
       "args_logger": {
-        "@id": "urn:ixuz-test-2:logger"
+        "@id": "urn:@iotakingdoms/auth:logger"
       },
       "args_httpServer": {
-        "@id": "urn:ixuz-test-2:httpServer"
+        "@id": "urn:@iotakingdoms/auth:httpServer"
       }
     }
   ]

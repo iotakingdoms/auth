@@ -1,15 +1,15 @@
 {
-  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2",
+  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth",
   "lsd:components": "dist/components/components.jsonld",
   "lsd:contexts": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/components/context.jsonld": "dist/components/context.jsonld"
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld": "dist/components/context.jsonld"
   },
   "lsd:importPaths": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/components/": "dist/components/",
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/config/": "config/",
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/dist/": "dist/"
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/": "dist/components/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/config/": "config/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/dist/": "dist/"
   },
-  "name": "ixuz-test-2",
+  "name": "@iotakingdoms/auth",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",

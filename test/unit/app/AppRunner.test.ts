@@ -25,7 +25,7 @@ const yargs = {
     port: 8080,
     logLevel: 'Info',
     config: 'config/config.jsonld',
-    entrypoint: 'urn:ixuz-test-2:app',
+    entrypoint: 'urn:@iotakingdoms/auth:app',
   })),
 };
 
@@ -41,11 +41,11 @@ describe('AppRunner', () => {
     expect(yargs.parse).toHaveBeenCalled();
     expect(mockComponentsManager.configRegistry.register).toHaveBeenCalled();
     expect(mockComponentsManager.instantiate).toHaveBeenCalledWith(
-      'urn:ixuz-test-2:app',
+      'urn:@iotakingdoms/auth:app',
       {
         variables: {
-          'urn:ixuz-test-2:variable:logLevel': 'Info',
-          'urn:ixuz-test-2:variable:port': 8080,
+          'urn:@iotakingdoms/auth:variable:logLevel': 'Info',
+          'urn:@iotakingdoms/auth:variable:port': 8080,
         },
       },
     );

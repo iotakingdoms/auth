@@ -26,7 +26,7 @@ export default class AppRunner implements Initializable {
         entrypoint: {
           type: 'string',
           alias: 'e',
-          default: 'urn:ixuz-test-2:app',
+          default: 'urn:@iotakingdoms/auth:app',
           requiresArg: true,
         },
         logLevel: {
@@ -45,9 +45,9 @@ export default class AppRunner implements Initializable {
       .parse();
 
     const variables = {
-      'urn:ixuz-test-2:variable:baseUrl': argv.baseUrl,
-      'urn:ixuz-test-2:variable:port': argv.port,
-      'urn:ixuz-test-2:variable:logLevel': argv.logLevel,
+      'urn:@iotakingdoms/auth:variable:baseUrl': argv.baseUrl,
+      'urn:@iotakingdoms/auth:variable:port': argv.port,
+      'urn:@iotakingdoms/auth:variable:logLevel': argv.logLevel,
     };
 
     const manager = await ComponentsManager.build({
