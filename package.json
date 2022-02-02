@@ -1,0 +1,35 @@
+{
+  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1",
+  "lsd:components": "dist/components/components.jsonld",
+  "lsd:contexts": {
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/components/context.jsonld": "dist/components/context.jsonld"
+  },
+  "lsd:importPaths": {
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/components/": "dist/components/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/config/": "config/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/dist/": "dist/"
+  },
+  "name": "ixuz-test-1",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "npm run build:ts && npm run build:components",
+    "build:ts": "tsc",
+    "build:components": "componentsjs-generator -c dist/components",
+    "release": "standard-version",
+    "start": "node dist/start.js"
+  },
+  "keywords": [],
+  "author": "Anton Wiklund",
+  "license": "MIT",
+  "dependencies": {
+    "componentsjs": "^5.0.0-beta.4",
+    "componentsjs-generator": "^3.0.0-beta.6"
+  },
+  "devDependencies": {
+    "standard-version": "^9.3.2",
+    "typescript": "^4.5.5"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/components/context.jsonld"
+  ],
+  "@id": "npmd:ixuz-test-1",
+  "@type": "Module",
+  "requireName": "ixuz-test-1",
+  "import": [
+    "npmd:ixuz-test-1/*/dist/lib/Test1App.jsonld",
+    "npmd:ixuz-test-1/*/dist/lib/Test1Component.jsonld"
+  ]
+}

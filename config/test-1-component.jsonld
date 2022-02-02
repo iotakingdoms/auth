@@ -1,0 +1,12 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/components/context.jsonld"
+  ],
+  "@graph": [
+    {
+      "@id": "urn:ixuz-test-1:test-1-component",
+      "@type": "Test1Component"
+    }
+  ]
+}

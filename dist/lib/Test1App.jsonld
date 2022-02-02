@@ -1,0 +1,59 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/components/context.jsonld"
+  ],
+  "@id": "npmd:ixuz-test-1",
+  "components": [
+    {
+      "@id": "it1:dist/lib/Test1App.jsonld#Test1App",
+      "@type": "Class",
+      "requireElement": "Test1App",
+      "parameters": [
+        {
+          "@id": "it1:dist/lib/Test1App.jsonld#Test1App_args_test1Component",
+          "range": "it1:dist/lib/Test1Component.jsonld#Test1Component"
+        }
+      ],
+      "memberFields": [
+        {
+          "@id": "it1:dist/lib/Test1App.jsonld#Test1App__member_test1Component",
+          "memberFieldName": "test1Component"
+        },
+        {
+          "@id": "it1:dist/lib/Test1App.jsonld#Test1App__member_constructor",
+          "memberFieldName": "constructor"
+        },
+        {
+          "@id": "it1:dist/lib/Test1App.jsonld#Test1App__member_run",
+          "memberFieldName": "run"
+        }
+      ],
+      "constructorArguments": [
+        {
+          "@id": "it1:dist/lib/Test1App.jsonld#Test1App_args__constructorArgument",
+          "fields": [
+            {
+              "keyRaw": "test1Component",
+              "value": {
+                "@id": "it1:dist/lib/Test1App.jsonld#Test1App_args_test1Component"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "@id": "it1:dist/lib/Test1App.jsonld#Test1AppArgs",
+      "@type": "AbstractClass",
+      "requireElement": "Test1AppArgs",
+      "parameters": [],
+      "memberFields": [
+        {
+          "@id": "it1:dist/lib/Test1App.jsonld#Test1AppArgs__member_test1Component",
+          "memberFieldName": "test1Component"
+        }
+      ],
+      "constructorArguments": []
+    }
+  ]
+}

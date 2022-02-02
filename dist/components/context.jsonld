@@ -1,0 +1,28 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
+    {
+      "npmd": "https://linkedsoftwaredependencies.org/bundles/npm/",
+      "it1": "npmd:ixuz-test-1/^0.0.0/",
+      "Test1App": {
+        "@id": "it1:dist/lib/Test1App.jsonld#Test1App",
+        "@prefix": true,
+        "@context": {
+          "args_test1Component": {
+            "@id": "it1:dist/lib/Test1App.jsonld#Test1App_args_test1Component"
+          }
+        }
+      },
+      "Test1AppArgs": {
+        "@id": "it1:dist/lib/Test1App.jsonld#Test1AppArgs",
+        "@prefix": true,
+        "@context": {}
+      },
+      "Test1Component": {
+        "@id": "it1:dist/lib/Test1Component.jsonld#Test1Component",
+        "@prefix": true,
+        "@context": {}
+      }
+    }
+  ]
+}
