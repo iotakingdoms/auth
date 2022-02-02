@@ -1,14 +1,10 @@
-import { ComponentsManager } from 'componentsjs';
-import * as Path from 'path';
-import { Test1App } from "./lib/Test1App";
+import AppRunner from './lib/AppRunner';
 
-(async () => {
-  const manager = await ComponentsManager.build({
-    mainModulePath: Path.join(__dirname, '/..'),
-  });
+const appRunner = new AppRunner();
 
-  await manager.configRegistry.register('config/test-1-app.jsonld');
+// eslint-disable-next-line import/prefer-default-export
+export const start = async () => {
+  await appRunner.initialize();
+};
 
-  const app: Test1App = await manager.instantiate('urn:ixuz-test-1:test-1-app');
-  app.run();
-})();
+start();

@@ -1,2 +1,4 @@
-export * from './lib/Test1App';
-export * from './lib/Test1Component';
+export * as AppRunner from './lib/AppRunner';
+export * from './lib/App';
+export * from './lib/AppRunner';
+export * from './lib/OidcEndpoint';

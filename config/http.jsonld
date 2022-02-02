@@ -1,0 +1,63 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/common/*/dist/components/context.jsonld"
+  ],
+  "@graph": [
+    {
+      "@id": "urn:ixuz-test-2:httpServer",
+      "@type": "HttpServer",
+      "args_logger": { "@id": "urn:ixuz-test-2:logger" },
+      "args_port": {
+        "@id": "urn:ixuz-test-2:variable:port",
+        "@type": "Variable"
+      },
+      "args_handler": {
+        "@type": "HttpHandler",
+        "args_logger": { "@id": "urn:ixuz-test-2:logger" },
+        "args_path": "/",
+        "args_handlers": [
+          {
+            "@id": "urn:ixuz-test-2:http:router",
+            "@type": "HttpHandler",
+            "args_logger": { "@id": "urn:ixuz-test-2:logger" },
+            "args_path": "/",
+            "args_handlers": [
+              {
+                "@type": "HttpHandler",
+                "args_logger": { "@id": "urn:ixuz-test-2:logger" },
+                "args_path": "/health",
+                "args_handlers": [
+                  {
+                    "@type": "HealthEndpoint",
+                    "args_logger": { "@id": "urn:ixuz-test-2:logger" }
+                  }
+                ]
+              },
+              {
+                "@type": "HttpHandler",
+                "args_logger": { "@id": "urn:ixuz-test-2:logger" },
+                "args_path": "/metrics",
+                "args_handlers": [
+                  {
+                    "@type": "PrometheusEndpoint",
+                    "args_logger": { "@id": "urn:ixuz-test-2:logger" }
+                  }
+                ]
+              },
+              {
+                "@type": "OidcEndpoint",
+                "args_logger": { "@id": "urn:ixuz-test-2:logger" },
+                "args_baseUrl": {
+                  "@id": "urn:ixuz-test-2:variable:baseUrl",
+                  "@type": "Variable"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

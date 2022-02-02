@@ -1,15 +1,15 @@
 {
-  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1",
+  "lsd:module": "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2",
   "lsd:components": "dist/components/components.jsonld",
   "lsd:contexts": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/components/context.jsonld": "dist/components/context.jsonld"
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/components/context.jsonld": "dist/components/context.jsonld"
   },
   "lsd:importPaths": {
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/components/": "dist/components/",
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/config/": "config/",
-    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-1/*/dist/": "dist/"
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/components/": "dist/components/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/config/": "config/",
+    "https://linkedsoftwaredependencies.org/bundles/npm/ixuz-test-2/*/dist/": "dist/"
   },
-  "name": "ixuz-test-1",
+  "name": "ixuz-test-2",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
@@ -25,10 +25,16 @@
   "author": "Anton Wiklund",
   "license": "MIT",
   "dependencies": {
+    "@iotakingdoms/common": "^0.0.15",
     "componentsjs": "^5.0.0-beta.4",
-    "componentsjs-generator": "^3.0.0-beta.6"
+    "componentsjs-generator": "^3.0.0-beta.6",
+    "ixuz-test-1": "^0.0.1",
+    "oidc-provider": "^7.10.6",
+    "yargs": "^17.3.1"
   },
   "devDependencies": {
+    "@types/oidc-provider": "^7.8.1",
+    "@types/yargs": "^17.0.8",
     "standard-version": "^9.3.2",
     "typescript": "^4.5.5"
   }
