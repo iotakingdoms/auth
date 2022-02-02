@@ -28,7 +28,7 @@ export class OidcEndpoint extends Endpoint {
       }],
       pkce: {
         methods: ['S256'],
-        required: () => false,
+        required: this.pkceRequired,
       },
     };
 
@@ -50,5 +50,9 @@ export class OidcEndpoint extends Endpoint {
 
   async handle(input: HttpHandlerInput): Promise<void> {
     this.callback(input.request, input.response);
+  }
+
+  pkceRequired() {
+    return false;
   }
 }
