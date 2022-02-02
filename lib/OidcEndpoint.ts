@@ -23,7 +23,7 @@ export class OidcEndpoint extends Endpoint {
         client_id: 'foo',
         client_secret: 'bar',
         grant_types: ['authorization_code'],
-        redirect_uris: ['http://foo.bar:8080/cb'],
+        redirect_uris: ['https://foo.bar:8080/cb'],
         response_types: ['code'],
       }],
       pkce: {
