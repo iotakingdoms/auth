@@ -1,7 +1,5 @@
 import { Provider, Configuration, PKCEMethods } from 'oidc-provider';
-import { Logger } from '@iotakingdoms/common';
-import { HttpHandlerInput } from '@iotakingdoms/common';
-import { Endpoint } from '@iotakingdoms/common';
+import { Logger, HttpHandlerInput, Endpoint } from '@iotakingdoms/common';
 
 export interface OidcEndpointArgs {
   logger: Logger;

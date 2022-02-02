@@ -47,6 +47,17 @@
                 ]
               },
               {
+                "@type": "HttpHandler",
+                "args_logger": { "@id": "urn:ixuz-test-2:logger" },
+                "args_path": "/version",
+                "args_handlers": [
+                  {
+                    "@type": "VersionEndpoint",
+                    "args_logger": { "@id": "urn:ixuz-test-2:logger" }
+                  }
+                ]
+              },
+              {
                 "@type": "OidcEndpoint",
                 "args_logger": { "@id": "urn:ixuz-test-2:logger" },
                 "args_baseUrl": {

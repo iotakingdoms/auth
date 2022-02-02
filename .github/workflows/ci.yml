@@ -1,0 +1,126 @@
+name: CI
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "**"
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+        with:
+          args: "--ignore-scripts"
+      - run: npm run lint
+  gen-docs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+        with:
+          args: "--ignore-scripts"
+      - run: npm run docs
+  dry-release:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+        with:
+          args: "--ignore-scripts"
+      - run: npm run release -- --dry-run
+  dry-npm-publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+      - run: npm run build
+      - run: npm publish --access public --dry
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  test-unit:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+        with:
+          args: "--ignore-scripts"
+      - run: npm run test:unit
+  test-integration:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+        with:
+          args: "--ignore-scripts"
+      - run: npm run test:integration
+  test-e2e:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+      - run: |
+          npm run build
+          npm run test:e2e
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: iotakingdoms/actions/packages/cached-npm-ci@main
+        with:
+          args: "--ignore-scripts"
+      - run: npm run test:unit
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  build-docker:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        node-version:
+          - "17.x"
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker image
+        run: docker build .

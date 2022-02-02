@@ -1,0 +1,20 @@
+name: Manual redeploy
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment"
+        required: true
+        default: "staging"
+jobs:
+  redeploy:
+    environment: ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: iotakingdoms/actions/packages/aws-redeploy@main
+        with:
+          access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region: ${{ secrets.AWS_REGION }}
+          cluster: ${{ secrets.AWS_CLUSTER }}
+          service: ${{ secrets.AWS_SERVICE }}

@@ -1,14 +1,14 @@
-import { ConsoleLogger, HttpServer, Initializable } from '@iotakingdoms/common';
+import { Logger, Initializable } from '@iotakingdoms/common';
 
 export interface AppArgs {
-  logger: ConsoleLogger;
-  httpServer: HttpServer;
+  logger: Logger;
+  httpServer: Initializable;
 }
 
 export class App implements Initializable {
-  private readonly logger: ConsoleLogger;
+  private readonly logger: Logger;
 
-  private readonly httpServer: HttpServer;
+  private readonly httpServer: Initializable;
 
   constructor(args: AppArgs) {
     this.logger = args.logger;
