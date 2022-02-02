@@ -10,12 +10,12 @@
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/dist/": "dist/"
   },
   "name": "@iotakingdoms/auth",
-  "version": "0.0.1",
+  "version": "0.0.22",
   "description": "",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "docs": "typedoc lib/index.ts",
+    "docs": "typedoc index.ts",
     "lint": "npm run lint:lib && npm run lint:test",
     "lint:lib": "eslint ./lib/**/*.ts",
     "lint:test": "eslint ./test/**/*.ts",
