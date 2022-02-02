@@ -1,4 +1,4 @@
-import { Logger } from '../../../../lib/logger/Logger';
+import { Logger } from '@iotakingdoms/common';
 
 export const mockLogger = (): jest.Mocked<Logger> => ({
   debug: jest.fn(),

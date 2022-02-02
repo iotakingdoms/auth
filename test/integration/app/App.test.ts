@@ -1,10 +1,12 @@
-import { App } from '../../../lib/app/App';
-import { ConsoleLogger } from '../../../lib/logger/ConsoleLogger';
-import { HttpServer } from '../../../lib/http/HttpServer';
-import { Logger } from '../../../lib/logger/Logger';
-import { HttpHandler } from '../../../lib/http/HttpHandler';
-import { NotFoundEndpoint } from '../../../lib/endpoint/NotFoundEndpoint';
-import { Initializable } from '../../../lib/common/Initializable';
+import {
+  ConsoleLogger,
+  HttpServer,
+  Logger,
+  HttpHandler,
+  NotFoundEndpoint,
+  Initializable,
+} from '@iotakingdoms/common';
+import { App } from '../../../lib/App';
 
 describe('App', () => {
   let logger: Logger;

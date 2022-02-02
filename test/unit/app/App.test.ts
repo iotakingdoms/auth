@@ -1,6 +1,5 @@
-import { App } from '../../../lib/app/App';
-import { Initializable } from '../../../lib/common/Initializable';
-import { Logger } from '../../../lib/logger/Logger';
+import { Initializable, Logger } from '@iotakingdoms/common';
+import { App } from '../../../lib/App';
 import { mockHttpServer } from '../mocks/http/HttpServer';
 import { mockLogger } from '../mocks/logger/Logger';
 

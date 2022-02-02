@@ -4,10 +4,16 @@
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld",
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/common/*/dist/components/context.jsonld"
   ],
-  "import": [
-    "app.jsonld",
-    "http.jsonld",
-    "logger.jsonld"
-  ],
-  "@graph": []
+  "@graph": [
+    {
+      "@id": "urn:@iotakingdoms/auth:app",
+      "@type": "App",
+      "args_logger": {
+        "@id": "urn:@iotakingdoms/auth:logger"
+      },
+      "args_httpServer": {
+        "@id": "urn:@iotakingdoms/auth:httpServer"
+      }
+    }
+  ]
 }

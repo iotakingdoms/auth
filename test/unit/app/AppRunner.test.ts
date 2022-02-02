@@ -1,5 +1,5 @@
-import AppRunner from '../../../lib/app/AppRunner';
-import { Initializable } from '../../../lib/common/Initializable';
+import { Initializable } from '@iotakingdoms/common';
+import AppRunner from '../../../lib/AppRunner';
 import { mockApp } from '../mocks/app/App';
 
 const app: Initializable = mockApp();

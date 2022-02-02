@@ -1,0 +1,74 @@
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/componentsjs/^4.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/common/*/dist/components/context.jsonld"
+  ],
+  "@graph": [
+    {
+      "@id": "urn:@iotakingdoms/auth:httpServer",
+      "@type": "HttpServer",
+      "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+      "args_port": {
+        "@id": "urn:@iotakingdoms/auth:variable:port",
+        "@type": "Variable"
+      },
+      "args_handler": {
+        "@type": "HttpHandler",
+        "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+        "args_path": "/",
+        "args_handlers": [
+          {
+            "@id": "urn:@iotakingdoms/auth:http:router",
+            "@type": "HttpHandler",
+            "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+            "args_path": "/",
+            "args_handlers": [
+              {
+                "@type": "HttpHandler",
+                "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+                "args_path": "/health",
+                "args_handlers": [
+                  {
+                    "@type": "HealthEndpoint",
+                    "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
+                  }
+                ]
+              },
+              {
+                "@type": "HttpHandler",
+                "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+                "args_path": "/metrics",
+                "args_handlers": [
+                  {
+                    "@type": "PrometheusEndpoint",
+                    "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
+                  }
+                ]
+              },
+              {
+                "@type": "HttpHandler",
+                "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+                "args_path": "/version",
+                "args_handlers": [
+                  {
+                    "@type": "VersionEndpoint",
+                    "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" }
+                  }
+                ]
+              },
+              {
+                "@type": "OidcEndpoint",
+                "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+                "args_baseUrl": {
+                  "@id": "urn:@iotakingdoms/auth:variable:baseUrl",
+                  "@type": "Variable"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
