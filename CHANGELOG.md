@@ -1,0 +1,26 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.0.23](https://github.com/iotakingdoms/auth/compare/v0.0.22...v0.0.23) (2022-02-02)
+
+
+### Features
+
+* a working version ([e6aea9b](https://github.com/iotakingdoms/auth/commit/e6aea9b6f660319c528058c4d8fa58dd9ea704f7))
+* launch arguments are now parsed from environment ([3538a14](https://github.com/iotakingdoms/auth/commit/3538a14d303b640f59eda4d587d43d304e1085a6))
+* using common features from externalized module ([ef636d1](https://github.com/iotakingdoms/auth/commit/ef636d1cc478bc222ef609a7dd0469321ad87808))
+
+
+### Bug Fixes
+
+* apply a mock that resembles a builder pattern for yargs ([5e72c74](https://github.com/iotakingdoms/auth/commit/5e72c74c6a1fb5441fbc980ee36892a558da0387))
+* docs generation ([c0da7c3](https://github.com/iotakingdoms/auth/commit/c0da7c3a3ed7b6a31e8b8754d209d4c28dee0c35))
+* fixed package names ([a2f276b](https://github.com/iotakingdoms/auth/commit/a2f276b8b2afb403d12f13d749b489fb25d90639))
+* index ([bc4bb79](https://github.com/iotakingdoms/auth/commit/bc4bb79e2a23c15c602e6f96069fd3f3bada5f54))
+* job ([6e0dccd](https://github.com/iotakingdoms/auth/commit/6e0dccdfd70ebce92f3bbe594990fda72e65ac61))
+* passes tests ([3ae0f03](https://github.com/iotakingdoms/auth/commit/3ae0f032a193f833e90a1c7429273e0b8d69a815))
+* remove unused import ([c2c6d0e](https://github.com/iotakingdoms/auth/commit/c2c6d0e36a552ef4022ee834e244cbb951a80c89))
+* some checks regarding calling the yargs dependency ([708eea6](https://github.com/iotakingdoms/auth/commit/708eea606e2006a202236fcfae04099116644421))
+* tests for the half finished implementation ([709ace1](https://github.com/iotakingdoms/auth/commit/709ace19295a484dec081ffaf0ea0ed324378620))
+* use https for redirect_uri ([c5f3094](https://github.com/iotakingdoms/auth/commit/c5f30948e868f9d49e0dffb7b745cc874d8f0ea6))
