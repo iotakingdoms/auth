@@ -1,4 +1,4 @@
-import AppRunner from './app/AppRunner';
+import AppRunner from './lib/AppRunner';
 
 const appRunner = new AppRunner();
 

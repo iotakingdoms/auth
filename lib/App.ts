@@ -1,5 +1,4 @@
-import { Logger, LogLevel } from '../logger/Logger';
-import { Initializable } from '../common/Initializable';
+import { Logger, Initializable } from '@iotakingdoms/common';
 
 export interface AppArgs {
   logger: Logger;
@@ -18,11 +17,11 @@ export class App implements Initializable {
 
   async initialize(): Promise<void> {
     await this.httpServer.initialize();
-    this.logger.log(LogLevel.Info, 'App started!');
+    this.logger.info('App started');
   }
 
   async terminate(): Promise<void> {
     await this.httpServer.terminate();
-    this.logger.log(LogLevel.Info, 'App stopped!');
+    this.logger.info('App terminated');
   }
 }

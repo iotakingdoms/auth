@@ -1,6 +1,6 @@
-import { start } from '../../lib/start';
+import { start } from '../../start';
 
-jest.mock('../../lib/app/AppRunner');
+jest.mock('../../lib/AppRunner');
 
 describe('start', () => {
   it('starts', async () => {

@@ -1,4 +1,4 @@
-import { Initializable } from '../../../../lib/common/Initializable';
+import { Initializable } from '@iotakingdoms/common';
 
 export const mockInitializable = (): jest.Mocked<Initializable> => ({
   initialize: jest.fn(),
