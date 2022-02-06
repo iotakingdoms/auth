@@ -62,7 +62,7 @@ export class Database implements IDatabase {
 
   async getDb() {
     try {
-      return this.ensureConnection();
+      return await this.ensureConnection();
     } catch (err) {
       throw new Error(`Failed to get database connection! Error: ${err}`);
     }
