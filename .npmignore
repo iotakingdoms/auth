@@ -12,3 +12,4 @@ Dockerfile
 renovate.json
 jest-puppeteer.config.js
 jest.config.js
+.env

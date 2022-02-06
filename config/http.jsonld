@@ -60,6 +60,7 @@
               {
                 "@type": "OidcEndpoint",
                 "args_logger": { "@id": "urn:@iotakingdoms/auth:logger" },
+                "args_database": { "@id": "urn:@iotakingdoms/auth:database" },
                 "args_baseUrl": {
                   "@id": "urn:@iotakingdoms/auth:variable:baseUrl",
                   "@type": "Variable"
