@@ -1,7 +1,7 @@
 import { Initializable, Logger } from '@iotakingdoms/common';
-import { App } from '../../../lib/App';
-import { mockHttpServer } from '../mocks/http/HttpServer';
-import { mockLogger } from '../mocks/logger/Logger';
+import { App } from '../../lib/App';
+import { mockHttpServer } from './mocks/http/HttpServer';
+import { mockLogger } from './mocks/logger/Logger';
 
 describe('App', () => {
   let logger: jest.Mocked<Logger>;

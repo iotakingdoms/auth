@@ -1,31 +1,44 @@
 import { Provider, Configuration } from 'oidc-provider';
 import { Logger, HttpHandlerInput, Endpoint } from '@iotakingdoms/common';
+import { IDatabase } from './Database';
 
 export interface OidcEndpointArgs {
   logger: Logger;
   baseUrl: string;
+  database: IDatabase;
 }
 
 export class OidcEndpoint extends Endpoint {
   private readonly baseUrl;
 
-  private readonly oidc;
+  private readonly database: IDatabase;
 
-  private readonly callback;
+  private oidc: Provider | undefined;
+
+  private callback: any;
 
   constructor(args: OidcEndpointArgs) {
     super(args);
 
     this.baseUrl = args.baseUrl;
+    this.database = args.database;
+  }
+
+  async initialize(): Promise<void> {
+    await super.initialize();
+
+    const db = await this.database.getDb();
+    const clientsFromDb = await db.collection('clients').find({}).toArray();
+    const clients = clientsFromDb.map((client) => ({
+      client_id: client.client_id,
+      client_secret: client.client_secret,
+      grant_types: client.grant_types,
+      redirect_uris: client.redirect_uris,
+      response_types: client.response_types,
+    }));
 
     const configuration: Configuration = {
-      clients: [{
-        client_id: 'foo',
-        client_secret: 'bar',
-        grant_types: ['authorization_code'],
-        redirect_uris: ['https://foo.bar:8080/cb'],
-        response_types: ['code'],
-      }],
+      clients,
       pkce: {
         methods: ['S256'],
         required: this.pkceRequired,
@@ -34,14 +47,13 @@ export class OidcEndpoint extends Endpoint {
 
     this.oidc = new Provider(this.baseUrl, configuration);
     this.callback = this.oidc.callback();
-  }
 
-  async initialize(): Promise<void> {
-    await super.initialize();
+    this.logger.info('Initialized OidcEndpoint');
   }
 
   async terminate(): Promise<void> {
     await super.terminate();
+    this.logger.info('Terminated OidcEndpoint');
   }
 
   canHandle(input: HttpHandlerInput): boolean {
@@ -49,7 +61,11 @@ export class OidcEndpoint extends Endpoint {
   }
 
   async handle(input: HttpHandlerInput): Promise<void> {
-    this.callback(input.request, input.response);
+    if (this.callback) {
+      this.callback(input.request, input.response);
+    } else {
+      this.logger.warn('Unhandled request because callback has not been initialized!');
+    }
   }
 
   pkceRequired() {

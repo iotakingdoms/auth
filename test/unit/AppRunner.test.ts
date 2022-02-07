@@ -1,6 +1,6 @@
 import { Initializable } from '@iotakingdoms/common';
-import AppRunner from '../../../lib/AppRunner';
-import { mockApp } from '../mocks/app/App';
+import AppRunner from '../../lib/AppRunner';
+import { mockApp } from './mocks/app/App';
 
 const app: Initializable = mockApp();
 
@@ -32,6 +32,28 @@ const yargs = {
 jest.mock('yargs', () => () => yargs);
 
 describe('AppRunner', () => {
+  let processEnv: any;
+
+  beforeAll(() => {
+    processEnv = process.env;
+  });
+
+  beforeEach(() => {
+    process.env = {
+      ...processEnv,
+      DB_PROTOCOL: 'mongodb+srv',
+      DB_HOST: 'db.example.host',
+      DB_NAME: 'testname',
+      DB_USER: 'testuser',
+      DB_PASS: 'testpass',
+      DB_PARAMS: '?testparam=true',
+    };
+  });
+
+  afterAll(() => {
+    process.env = processEnv;
+  });
+
   it('can initialize and terminate an app', async () => {
     const appRunner = new AppRunner();
     await appRunner.initialize();
@@ -46,6 +68,12 @@ describe('AppRunner', () => {
         variables: {
           'urn:@iotakingdoms/auth:variable:logLevel': 'Info',
           'urn:@iotakingdoms/auth:variable:port': 8080,
+          'urn:@iotakingdoms/auth:variable:dbProtocol': 'mongodb+srv',
+          'urn:@iotakingdoms/auth:variable:dbHost': 'db.example.host',
+          'urn:@iotakingdoms/auth:variable:dbName': 'testname',
+          'urn:@iotakingdoms/auth:variable:dbUser': 'testuser',
+          'urn:@iotakingdoms/auth:variable:dbPass': 'testpass',
+          'urn:@iotakingdoms/auth:variable:dbParams': '?testparam=true',
         },
       },
     );

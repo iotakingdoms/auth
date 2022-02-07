@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { ComponentsManager } from 'componentsjs';
 import * as Path from 'path';
 import yargs from 'yargs';
@@ -41,6 +42,30 @@ export default class AppRunner implements Initializable {
           default: 8080,
           requiresArg: true,
         },
+        dbProtocol: {
+          type: 'string',
+          requiresArg: true,
+        },
+        dbHost: {
+          type: 'string',
+          requiresArg: true,
+        },
+        dbName: {
+          type: 'string',
+          requiresArg: true,
+        },
+        dbUser: {
+          type: 'string',
+          requiresArg: true,
+        },
+        dbPass: {
+          type: 'string',
+          requiresArg: true,
+        },
+        dbParams: {
+          type: 'string',
+          requiresArg: true,
+        },
       })
       .parse();
 
@@ -48,6 +73,12 @@ export default class AppRunner implements Initializable {
       'urn:@iotakingdoms/auth:variable:baseUrl': argv.baseUrl,
       'urn:@iotakingdoms/auth:variable:port': argv.port,
       'urn:@iotakingdoms/auth:variable:logLevel': argv.logLevel,
+      'urn:@iotakingdoms/auth:variable:dbProtocol': argv.dbProtocol || process.env.DB_PROTOCOL,
+      'urn:@iotakingdoms/auth:variable:dbHost': argv.dbHost || process.env.DB_HOST,
+      'urn:@iotakingdoms/auth:variable:dbName': argv.dbName || process.env.DB_NAME,
+      'urn:@iotakingdoms/auth:variable:dbUser': argv.dbUser || process.env.DB_USER,
+      'urn:@iotakingdoms/auth:variable:dbPass': argv.dbPass || process.env.DB_PASS,
+      'urn:@iotakingdoms/auth:variable:dbParams': argv.dbParams || process.env.DB_PARAMS,
     };
 
     const manager = await ComponentsManager.build({

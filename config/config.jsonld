@@ -6,6 +6,7 @@
   ],
   "import": [
     "app.jsonld",
+    "database.jsonld",
     "http.jsonld",
     "logger.jsonld"
   ],
