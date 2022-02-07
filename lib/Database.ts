@@ -56,7 +56,7 @@ export class Database implements IDatabase {
       this.db = this.client.db(this.name);
       return this.db;
     } catch (err) {
-      throw new Error(`Database[${this.name}] failed to connect! Error: ${err}`);
+      throw new Error(`Database[${this.name}] failed to ensure connection! ${err}`);
     }
   }
 
@@ -64,7 +64,7 @@ export class Database implements IDatabase {
     try {
       return await this.ensureConnection();
     } catch (err) {
-      throw new Error(`Failed to get database connection! Error: ${err}`);
+      throw new Error(`Failed to get Database[${this.name}] connection! ${err}`);
     }
   }
 }
