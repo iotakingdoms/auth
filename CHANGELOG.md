@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.24](https://github.com/iotakingdoms/auth/compare/v0.0.23...v0.0.24) (2022-02-07)
+
+
+### Features
+
+* load oidc clients from database ([01ad78f](https://github.com/iotakingdoms/auth/commit/01ad78fb2dec928420f45c7cd7e26f3ee7e8b507))
+* using release version action ([b7a830a](https://github.com/iotakingdoms/auth/commit/b7a830abb2522f88e731ba1507c114958a4d0400))
+
+
+### Bug Fixes
+
+* add unit tests for Database implementation ([771fa28](https://github.com/iotakingdoms/auth/commit/771fa2871265fe0e2447f6d4d54202c0ea069e97))
+* bug where rethrow never happens ([7d59716](https://github.com/iotakingdoms/auth/commit/7d597167c00f3f547572432ce04af21f05d99148))
+
 ### [0.0.23](https://github.com/iotakingdoms/auth/compare/v0.0.22...v0.0.23) (2022-02-02)
 
 
