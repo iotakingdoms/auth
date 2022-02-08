@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.25](https://github.com/iotakingdoms/auth/compare/v0.0.24...v0.0.25) (2022-02-08)
+
+
+### Bug Fixes
+
+* remove e2e for the time being ([95dc1f3](https://github.com/iotakingdoms/auth/commit/95dc1f3ce31a42cd636eed41a0953a465c1b4c9f))
+
 ### [0.0.24](https://github.com/iotakingdoms/auth/compare/v0.0.23...v0.0.24) (2022-02-07)
 
 
