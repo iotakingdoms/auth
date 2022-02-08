@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.26](https://github.com/iotakingdoms/auth/compare/v0.0.25...v0.0.26) (2022-02-08)
+
+
+### Bug Fixes
+
+* keep the npm script, but don't run test:e2e for now ([7f8fc19](https://github.com/iotakingdoms/auth/commit/7f8fc198634eee234c99badf7580a65b823da3a1))
+
 ### [0.0.25](https://github.com/iotakingdoms/auth/compare/v0.0.24...v0.0.25) (2022-02-08)
 
 
