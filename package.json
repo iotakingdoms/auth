@@ -59,7 +59,7 @@
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jest": "26.1.0",
     "husky": "7.0.4",
-    "jest": "27.5.0",
+    "jest": "27.5.1",
     "jest-puppeteer": "6.0.3",
     "puppeteer": "13.2.0",
     "standard-version": "9.3.2",
