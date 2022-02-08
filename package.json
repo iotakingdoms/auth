@@ -10,7 +10,7 @@
     "https://linkedsoftwaredependencies.org/bundles/npm/@iotakingdoms/auth/*/dist/": "dist/"
   },
   "name": "@iotakingdoms/auth",
-  "version": "0.0.25",
+  "version": "0.0.24",
   "description": "",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,9 +22,10 @@
     "build": "npm run build:ts && npm run build:components",
     "build:ts": "tsc",
     "build:components": "componentsjs-generator -c dist/components",
-    "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
+    "test": "npm run test:unit && npm run test:integration",
     "test:unit": "jest test/unit",
     "test:integration": "jest test/integration --collectCoverage=false",
+    "test:e2e": "jest -c=test/e2e/jest.config.js",
     "start": "node dist/start.js",
     "release": "standard-version",
     "prepare": "husky install; npm run build"
