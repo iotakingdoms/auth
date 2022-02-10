@@ -61,6 +61,21 @@ export class OidcEndpoint extends Endpoint {
   }
 
   async handle(input: HttpHandlerInput): Promise<void> {
+    const corsHeaders = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+      'Access-Control-Max-Age': 2592000, // 30 days
+    };
+
+    const originalEnd = input.response.end;
+    // eslint-disable-next-line no-param-reassign
+    input.response.end = () => {
+      input.response.writeHead(input.response.statusCode, corsHeaders);
+      // eslint-disable-next-line no-param-reassign
+      input.response.end = originalEnd;
+      input.response.end();
+    };
+
     if (this.callback) {
       this.callback(input.request, input.response);
     } else {
