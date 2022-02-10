@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.28](https://github.com/iotakingdoms/auth/compare/v0.0.27...v0.0.28) (2022-02-10)
+
+
+### Bug Fixes
+
+* allow only cors from *.iotakingdoms.com ([94e40e2](https://github.com/iotakingdoms/auth/commit/94e40e2668cb16ed33c4724d6f05d53ec7519c6c))
+
 ### [0.0.27](https://github.com/iotakingdoms/auth/compare/v0.0.26...v0.0.27) (2022-02-10)
 
 
