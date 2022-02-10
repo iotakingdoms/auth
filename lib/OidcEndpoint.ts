@@ -62,7 +62,7 @@ export class OidcEndpoint extends Endpoint {
 
   async handle(input: HttpHandlerInput): Promise<void> {
     const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': '*.iotakingdoms.com',
       'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
       'Access-Control-Max-Age': 2592000, // 30 days
     };
