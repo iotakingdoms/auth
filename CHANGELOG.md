@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.27](https://github.com/iotakingdoms/auth/compare/v0.0.26...v0.0.27) (2022-02-10)
+
+
+### Features
+
+* add cors headers to response ([ab793d3](https://github.com/iotakingdoms/auth/commit/ab793d3563dd9b889306b4d912f4e1319b17983d))
+
 ### [0.0.26](https://github.com/iotakingdoms/auth/compare/v0.0.25...v0.0.26) (2022-02-08)
 
 
