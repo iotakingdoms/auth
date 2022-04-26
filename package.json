@@ -47,7 +47,7 @@
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@types/jest": "27.4.1",
-    "@types/jest-environment-puppeteer": "5.0.0",
+    "@types/jest-environment-puppeteer": "5.0.1",
     "@types/oidc-provider": "7.11.0",
     "@types/puppeteer": "5.4.5",
     "@types/yargs": "17.0.10",
