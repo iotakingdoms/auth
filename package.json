@@ -61,7 +61,7 @@
     "husky": "8.0.1",
     "jest": "28.1.0",
     "jest-puppeteer": "6.0.3",
-    "puppeteer": "14.0.0",
+    "puppeteer": "14.1.0",
     "standard-version": "9.3.2",
     "ts-jest": "28.0.2",
     "typedoc": "0.22.15",
