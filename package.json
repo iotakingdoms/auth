@@ -50,7 +50,7 @@
     "@types/jest-environment-puppeteer": "5.0.2",
     "@types/oidc-provider": "7.11.1",
     "@types/puppeteer": "5.4.6",
-    "@types/yargs": "17.0.10",
+    "@types/yargs": "17.0.11",
     "@typescript-eslint/eslint-plugin": "5.32.0",
     "@typescript-eslint/parser": "5.32.0",
     "componentsjs-generator": "3.0.5",
