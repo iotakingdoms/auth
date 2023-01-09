@@ -44,7 +44,7 @@
     "yargs": "^17.3.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.0",
+    "@commitlint/cli": "17.4.1",
     "@commitlint/config-conventional": "17.4.0",
     "@types/jest": "29.2.5",
     "@types/jest-environment-puppeteer": "5.0.3",
