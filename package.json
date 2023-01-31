@@ -38,7 +38,7 @@
     "componentsjs": "^5.0.0-beta.4",
     "dotenv": "^16.0.0",
     "ixuz-test-1": "^0.0.1",
-    "mongodb": "^4.3.1",
+    "mongodb": "^5.0.0",
     "node-mocks-http": "^1.11.0",
     "oidc-provider": "^7.10.6",
     "yargs": "^17.3.1"
