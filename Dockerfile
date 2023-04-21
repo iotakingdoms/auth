@@ -1,5 +1,5 @@
 # Build step
-FROM node:19-alpine AS BUILD_IMAGE
+FROM node:20-alpine AS BUILD_IMAGE
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --ignore-scripts
@@ -12,7 +12,7 @@ RUN npm run test:integration
 RUN npm prune --production
 
 # Application image
-FROM node:19-alpine
+FROM node:20-alpine
 RUN apk --no-cache add curl
 WORKDIR /app
 ENV NODE_ENV=production
