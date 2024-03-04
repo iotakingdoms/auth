@@ -35,7 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "@iotakingdoms/common": "^0.0.15",
-    "componentsjs": "^5.0.0-beta.4",
+    "componentsjs": "^6.0.0",
     "dotenv": "^16.0.0",
     "ixuz-test-1": "^0.0.1",
     "mongodb": "^6.0.0",
