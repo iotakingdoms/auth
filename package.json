@@ -63,7 +63,7 @@
     "jest-puppeteer": "10.0.1",
     "puppeteer": "22.13.1",
     "standard-version": "9.5.0",
-    "ts-jest": "29.2.2",
+    "ts-jest": "29.2.3",
     "typedoc": "0.26.4",
     "typescript": "5.5.3"
   }
